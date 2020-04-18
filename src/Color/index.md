@@ -13,6 +13,7 @@ npm i antd react-color
 ```
 
 > - [`antd`](https://ant.design/components/popover-cn/)
+> - [`react-jss`](https://cssinjs.org/react-jss)
 > - [`react-color`](http://casesandberg.github.io/react-color/#api-individual)
 
 ## 代码演示

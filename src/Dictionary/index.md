@@ -65,7 +65,7 @@ defaultName  | 当找不到字典值对应的名称时，显示默认名称 | `s
 参数 | 说明 | 类型 | 默认值 |
 ------------- | ------------- | ------------- | ------------- |
 data  | 包含 `value` `name` 的 `数据字典` | `array<object>` | `[]` |
-value  | 字典值 | `any` | `""` |
+value  | 字典值 | `any` | - |
 all  | 是否显示全部  | `boolean` | `true` |
 allValue | 全部的值 | `string` | `""` |
 allName | 全部的名称 | `string` | `全部` |

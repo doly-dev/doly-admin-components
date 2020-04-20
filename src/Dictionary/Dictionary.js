@@ -7,7 +7,7 @@ export default ({ data = [], value = "", defaultName = "-", ...restProps }) => {
   const ret = data.find(item => item.value === value) || {};
 
   if (!ret.name) {
-    return <span {...restProps}>defaultName</span>;
+    return <span {...restProps}>{defaultName}</span>;
   }
 
   if (ret.color) {

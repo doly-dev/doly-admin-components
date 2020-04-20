@@ -17,5 +17,5 @@ export default ({ data = [], value = "", defaultName = "-", ...restProps }) => {
     return <Badge status={ret.status} text={ret.name} {...restProps} />
   }
 
-  return <span {...restProps}>ret.name</span>;
+  return <span {...restProps}>{ret.name}</span>;
 }

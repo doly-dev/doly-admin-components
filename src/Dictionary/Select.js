@@ -8,7 +8,7 @@ export default ({ data = [], excludeValues = [], value = "", all = true, allValu
   }, [data, excludeValues]);
 
   return (
-    <Select value={value} {...restProps}>
+    <Select placeholder="请选择" value={value} {...restProps}>
       {
         all ? <Select.Option value={allValue}>{allName}</Select.Option> : null
       }

@@ -3,20 +3,20 @@ import { Badge } from "antd";
 
 const suportStatus = ["success", "processing", "default", "error", "warning"];
 
-export default ({ data = [], value = "", defaultName = "-", ...restProps }) => {
+export default ({ data = [], value = "", defaultName = "-" }) => {
   const ret = data.find(item => item.value === value) || {};
 
   if (!ret.name) {
-    return <span {...restProps}>{defaultName}</span>;
+    return defaultName;
   }
 
   if (ret.color) {
-    return <span style={{ color: ret.color }} {...restProps}>{ret.name}</span>
+    return <span style={{ color: ret.color }}>{ret.name}</span>
   }
 
   if (ret.status && suportStatus.indexOf(ret.status)) {
-    return <Badge status={ret.status} text={ret.name} {...restProps} />
+    return <Badge status={ret.status} text={ret.name} />
   }
 
-  return <span {...restProps}>{ret.name}</span>;
+  return ret.name;
 }

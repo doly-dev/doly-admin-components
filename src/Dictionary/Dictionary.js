@@ -1,3 +1,4 @@
+import React from "react";
 import { Badge } from "antd";
 
 const suportStatus = ["success", "processing", "default", "error", "warning"];

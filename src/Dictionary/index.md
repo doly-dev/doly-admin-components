@@ -32,6 +32,10 @@ npm i antd
 
 <code src="./demo/Demo1.jsx" />
 
+### 状态 & 颜色
+
+<code src="./demo/Demo1.1.jsx" />
+
 ### Form 中使用
 
 <code src="./demo/Demo2.jsx" />

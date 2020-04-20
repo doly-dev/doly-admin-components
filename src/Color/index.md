@@ -13,7 +13,6 @@ npm i antd react-color
 ```
 
 > - [`antd`](https://ant.design/components/popover-cn/)
-> - [`react-jss`](https://cssinjs.org/react-jss)
 > - [`react-color`](http://casesandberg.github.io/react-color/#api-individual)
 
 ## 代码演示
@@ -37,12 +36,14 @@ npm i antd react-color
 参数 | 说明 | 类型 | 默认值 |
 ------------- | ------------- | ------------- | ------------- |
 value  | 颜色值。支持 `hex` `rgb` | `string` | - |
+showText  | 显示颜色值文本 | `boolean` | `false` |
 
 ### Color.BlockPicker
 
 参数 | 说明 | 类型 | 默认值 |
 ------------- | ------------- | ------------- | ------------- |
 value  | 颜色值。支持 `hex` `rgb` | `string` | - |
+showText  | 显示颜色值文本 | `boolean` | `false` |
 onChange  | 当颜色值变动后触发。 | `(color) => void` | - |
 trigger  | 触发行为，可选 `hover/click` | `string` | `click` |
 colors  | 预置快捷选择颜色。支持 `hex` `rgb` |  `array<string>`  | `['#D9E3F0', '#F47373', '#697689', '#37D67A', '#2CCCE4', '#555555', '#dce775', '#ff8a65', '#ba68c8']` |

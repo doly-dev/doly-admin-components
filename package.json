@@ -20,8 +20,7 @@
   },
   "homepage": "https://github.com/doly-dev/doly-admin-components#readme",
   "dependencies": {
-    "react-color": "^2.18.0",
-    "react-jss": "^10.1.1"
+    "react-color": "^2.18.0"
   },
   "devDependencies": {
     "antd": "^4.1.0",

@@ -9,6 +9,6 @@ export default () => {
   const [color, setColor] = useState('#e60000');
 
   return (
-    <Color.BlockPicker value={color} onChange={setColor} />
+    <Color.BlockPicker value={color} onChange={setColor} showText />
   )
 }

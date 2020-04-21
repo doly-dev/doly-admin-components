@@ -1,6 +1,6 @@
 /**
- * title: 自定义排除项和全部
- * desc: 如在审核记录页面，需要排除 `审核中`，并且全部的值为其余两个值的字符串
+ * title: 不显示全部
+ * desc: 设置 `all` 为 `false`
  */
 
 import React, { useState, useCallback } from "react";
@@ -31,7 +31,7 @@ const buttonItemLayouts = {
   wrapperCol: { span: 16, offset: 6 }
 }
 
-const initialValues = { status: "2,3" };
+const initialValues = { status: 1 };
 
 export default () => {
   const [result, setResult] = useState(initialValues);
@@ -47,7 +47,7 @@ export default () => {
         onFinish={onFinish}
       >
         <Form.Item label="审核状态" name="status">
-          <Dictionary.Select data={enumStatus} allValue="2,3" excludeValues={[1]} />
+          <Dictionary.Select data={enumStatus} all={false} />
         </Form.Item>
         <Form.Item {...buttonItemLayouts}>
           <Button type="primary" htmlType="submit">Submit</Button>

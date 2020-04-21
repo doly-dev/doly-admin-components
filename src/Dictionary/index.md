@@ -36,17 +36,21 @@ npm i antd
 
 <code src="./demo/Demo1.1.jsx" />
 
-### Form 中使用
+### 选择字典值
 
 <code src="./demo/Demo2.jsx" />
 
-### 不显示全部
+### Form 中使用
 
 <code src="./demo/Demo3.jsx" />
 
-### 自定义排除项和全部
+### 不显示全部
 
 <code src="./demo/Demo4.jsx" />
+
+### 自定义排除项和全部
+
+<code src="./demo/Demo5.jsx" />
 
 ## API
 

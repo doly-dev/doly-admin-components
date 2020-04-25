@@ -16,7 +16,8 @@ const buttonItemLayouts = {
 }
 
 const initialValues = {
-  bgColor: "#e60000"
+  bgColor: "#e60000",
+  textColor: "rgba(255,127,0,1)"
 }
 
 export default () => {
@@ -33,7 +34,10 @@ export default () => {
         onFinish={onFinish}
       >
         <Form.Item label="背景颜色" name="bgColor">
-          <Color.BlockPicker />
+          <Color.BlockPicker showText />
+        </Form.Item>
+        <Form.Item label="文本颜色" name="textColor">
+          <Color.SketchPicker colorMode="rgb" placement="topLeft" />
         </Form.Item>
         <Form.Item {...buttonItemLayouts}>
           <Button type="primary" htmlType="submit">Submit</Button>

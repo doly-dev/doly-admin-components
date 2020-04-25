@@ -1,5 +1,5 @@
-import React, { useMemo } from "react";
-import { BlockPicker } from "react-color";
+import React from "react";
+import { CompactPicker } from "react-color";
 import PickerWrapper from "./PickerWrapper";
 
 import styles from "./style.less";
@@ -17,7 +17,7 @@ export default ({
 
   return (
     <PickerWrapper {...wrapperProps} overlayClassName={styles.overlayNormalize}>
-      <BlockPicker {...restProps} triangle="hide" />
+      <CompactPicker {...restProps} />
     </PickerWrapper>
   );
 };

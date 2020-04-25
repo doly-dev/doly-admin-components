@@ -38,7 +38,9 @@ npm i antd react-color
 value  | 颜色值。支持 `hex` `rgb` | `string` | - |
 showText  | 显示颜色值文本 | `boolean` | `false` |
 
-### Color.BlockPicker
+### Picker 共同的 API
+
+以下 API 为 `BlockPicker` `ChromePicker` `CompactPicker` `PhotoshopPicker` `SketchPicker` 共享的 API。
 
 参数 | 说明 | 类型 | 默认值 |
 ------------- | ------------- | ------------- | ------------- |
@@ -46,4 +48,38 @@ value  | 颜色值。支持 `hex` `rgb` | `string` | - |
 showText  | 显示颜色值文本 | `boolean` | `false` |
 onChange  | 当颜色值变动后触发。 | `(color) => void` | - |
 trigger  | 触发行为，可选 `hover/click` | `string` | `click` |
-colors  | 预置快捷选择颜色。支持 `hex` `rgb` |  `array<string>`  | `['#D9E3F0', '#F47373', '#697689', '#37D67A', '#2CCCE4', '#555555', '#dce775', '#ff8a65', '#ba68c8']` |
+colorMode  | 颜色模式，可选 `hex` `rgb` | `string` | `hex` |
+placement  | 颜色选择浮层位置，可选 `top` `left` `right` `bottom` `topLeft` `topRight` `bottomLeft` `bottomRight` `leftTop` `leftBottom` `rightTop` `rightBottom` |  `string`  | `bottomLeft` |
+
+### Color.BlockPicker
+
+参数 | 说明 | 类型 | 默认值 |
+------------- | ------------- | ------------- | ------------- |
+width | 颜色选择浮层宽度 | `string` | `170px` |
+colors  | 预置快捷选择颜色。支持 `hex` `rgb` |  `array<string>`  | - |
+
+### Color.ChromePicker
+
+参数 | 说明 | 类型 | 默认值 |
+------------- | ------------- | ------------- | ------------- |
+renderers | 使用 `{canvas: Canvas}` 和 `canvas` 节点来处理 `SSR` | `object` | - |
+
+### Color.CompactPicker
+
+参数 | 说明 | 类型 | 默认值 |
+------------- | ------------- | ------------- | ------------- |
+colors  | 预置快捷选择颜色。支持 `hex` `rgb` |  `array<string>`  | - |
+
+### Color.PhotoshopPicker
+
+参数 | 说明 | 类型 | 默认值 |
+------------- | ------------- | ------------- | ------------- |
+header | 颜色选择浮层标题 | `string` | `Color Picker` |
+
+### Color.SketchPicker
+
+参数 | 说明 | 类型 | 默认值 |
+------------- | ------------- | ------------- | ------------- |
+width | 颜色选择浮层宽度 | `number` | `200` |
+renderers | 使用 `{canvas: Canvas}` 和 `canvas` 节点来处理 `SSR` | `object` | - |
+presetColors  | 预置快捷选择颜色。支持 `hex` `rgb` |  `array<{color: string, title: string}>`  | - |

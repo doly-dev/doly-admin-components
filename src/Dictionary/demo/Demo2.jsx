@@ -25,7 +25,7 @@ export default () => {
 
   return (
     <>
-      <Dictionary.Select data={enumStatus} value={value} onChange={setValue} style={{ width: 200 }} />
+      <Dictionary.Select data={enumStatus} value={value} onChange={setValue} all={false} style={{ width: 200 }} />
       <br /><br />
       <div>current value: {value}</div>
     </>

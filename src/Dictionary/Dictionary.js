@@ -14,7 +14,7 @@ export default ({ data = [], value = "", defaultName = "-" }) => {
     return <span style={{ color: ret.color }}>{ret.name}</span>
   }
 
-  if (ret.status && suportStatus.indexOf(ret.status)) {
+  if (ret.status && suportStatus.indexOf(ret.status) > -1) {
     return <Badge status={ret.status} text={ret.name} />
   }
 

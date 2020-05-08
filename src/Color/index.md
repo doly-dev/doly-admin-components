@@ -1,15 +1,22 @@
 ---
 title: Color
+group:
+  title: 通用组件
+  path: /common
+  order: 1
+legacy: /common/color
 ---
 
 # Color
+
+> 建议拷贝文件放在 `src/components` 目录
 
 用于显示颜色、选择颜色，可直接应用于 `antd` 表单中。
 
 **安装依赖**
 
 ```
-npm i antd react-color
+npm i antd@4 react-color@2
 ```
 
 > - [`antd`](https://ant.design/components/popover-cn/)

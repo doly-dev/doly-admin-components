@@ -1,8 +1,15 @@
 ---
 title: Dictionary
+group:
+  title: 通用组件
+  path: /common
+  order: 1
+legacy: /common/dictionary
 ---
 
 # Dictionary
+
+> 建议拷贝文件放在 `src/components` 目录
 
 用于 `数据字典` 的显示 和 选择，可直接应用于 `antd` 表单中。
 
@@ -21,7 +28,7 @@ title: Dictionary
 **安装依赖**
 
 ```
-npm i antd
+npm i antd@4
 ```
 
 > - [`antd`](https://ant.design/components/popover-cn/)

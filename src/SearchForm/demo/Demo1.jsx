@@ -143,7 +143,7 @@ export default ({ onSubmit = () => { }, name = "apply", submitOnMount = false, l
         <Row>
           <Col {...buttonItemLayout} style={{ textAlign: "right" }}>
             <Row>
-              <Col span={22}>
+              <Col xs={24} sm={22}>
                 <Button type="primary" htmlType="submit" loading={loading}>
                   查询
                 </Button>

@@ -151,7 +151,7 @@ export default ({ onSubmit = () => { }, name = "approve", submitOnMount = false,
         <Row>
           <Col {...buttonItemLayout} style={{ textAlign: "right" }}>
             <Row>
-              <Col span={22}>
+              <Col xs={24} sm={22}>
                 <Button type="primary" htmlType="submit" loading={loading}>
                   查询
                 </Button>

@@ -5,12 +5,15 @@
  */
 
 import React from "react";
-import { Table, Space } from "antd";
+import { Card, Table, Space } from "antd";
+import moment from "moment";
+import Mock from 'mockjs';
+
 import Demo1 from "./Demo1";
 import usePagination from "./usePagination";
 import Dictionary from "../../Dictionary";
-import Mock from 'mockjs';
-import moment from "moment";
+
+import styles from './style.less';
 
 // 审核状态字典，尽量在 src/constants 中维护。
 const enumApproveResult = [
@@ -34,7 +37,7 @@ const enumApproveResult = [
 const applyList = ({ page: { pageNum, pageSize }, data = {} }) => (
   Mock.mock({
     [`data|${pageSize}`]: [{
-      "applyCode|+1": (pageNum-1)*pageSize + 1,
+      "applyCode|+1": (pageNum - 1) * pageSize + 1,
       applicantName: '@cname',
       approverName: '@cname',
       createTime: moment().format("YYYY-MM-DD HH:mm:ss"),
@@ -97,7 +100,7 @@ export default () => {
   const { data, run, loading, changePagination, pagination } = usePagination(getApplyList, { autoRun: false });
 
   return (
-    <Space direction="vertical" size="middle">
+    <Card className={styles.demo1}>
       <Demo1
         onSubmit={run}
         submitOnMount
@@ -108,11 +111,12 @@ export default () => {
         dataSource={data}
         columns={columns}
         rowKey="applyCode"
-        pagination={{...pagination, showSizeChanger: true}}
+        pagination={{ ...pagination, showSizeChanger: true }}
         onChange={changePagination}
         loading={loading}
         // bordered
+        style={{ marginTop: 24 }}
       />
-    </Space>
+    </Card>
   )
 }

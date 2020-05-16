@@ -100,7 +100,7 @@ export default () => {
   const { data, run, loading, changePagination, pagination } = usePagination(getApplyList, { autoRun: false });
 
   return (
-    <Card className={styles.demo1}>
+    <Card className={styles.wrapper}>
       <Demo1
         onSubmit={run}
         submitOnMount

@@ -3,7 +3,7 @@ title: Color
 group:
   title: 通用组件
   path: /common
-  order: 1
+  order: 0
 legacy: /common/color
 ---
 
@@ -16,7 +16,7 @@ legacy: /common/color
 **安装依赖**
 
 ```
-npm i antd@4 react-color@2
+npm i antd react-color@2
 ```
 
 > - [`antd`](https://ant.design/components/popover-cn/)

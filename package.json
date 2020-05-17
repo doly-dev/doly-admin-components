@@ -6,6 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "npx dumi dev",
+    "build": "npm run build:doc",
     "build:doc": "npx dumi build"
   },
   "repository": {
@@ -20,6 +21,7 @@
   },
   "homepage": "https://github.com/doly-dev/doly-admin-components#readme",
   "dependencies": {
+    "rc-countdown-view": "^1.0.0",
     "rc-hooks": "^0.5.1",
     "react-color": "^2.18.0"
   },
@@ -29,7 +31,9 @@
     "dumi": "^1.0.13",
     "mockjs": "^1.1.0",
     "react": "^16.13.1",
-    "react-dom": "^16.13.1"
+    "react-dom": "^16.13.1",
+    "@typescript-eslint/parser": "^1.13.0",
+    "dayjs": "^1.8.27"
   },
   "peerDependencies": {
     "react": "^16.8.6",

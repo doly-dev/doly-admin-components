@@ -3,7 +3,7 @@ title: Dictionary
 group:
   title: 通用组件
   path: /common
-  order: 1
+  order: 0
 legacy: /common/dictionary
 ---
 
@@ -28,7 +28,7 @@ legacy: /common/dictionary
 **安装依赖**
 
 ```
-npm i antd@4
+npm i antd
 ```
 
 > - [`antd`](https://ant.design/components/popover-cn/)

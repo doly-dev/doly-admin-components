@@ -16,6 +16,7 @@
 - 通用组件
   - [Color] - 显示颜色、选择颜色，可直接用于 `antd` 表单中。
   - [Dictionary] - `数据字典` 的显示 和 选择，可直接用于 `antd` 表单中。
+  - [CountDownButton] - 倒计时按钮，如获取验证码
 - 业务组件
   - [SearchForm] - 查询表单
 
@@ -52,5 +53,6 @@ npm run build:doc
 
 [Color]: https://doly-dev.github.io/doly-admin-components/site/#/common/color
 [Dictionary]: https://doly-dev.github.io/doly-admin-components/site/#/common/dictionary
+[CountDownButton]: https://doly-dev.github.io/doly-admin-components/site/#/common/count-down-button
 
 [SearchForm]: https://doly-dev.github.io/doly-admin-components/site/#/business/search-form

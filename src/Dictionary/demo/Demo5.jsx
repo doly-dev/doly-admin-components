@@ -45,6 +45,7 @@ export default () => {
         {...formItemLayouts}
         initialValues={initialValues}
         onFinish={onFinish}
+        name="select_3"
       >
         <Form.Item label="审核状态" name="status">
           <Dictionary.Select data={enumStatus} allValue="2,3" excludeValues={[1]} />

@@ -1,24 +1,28 @@
 /**
- * title: antd Form 中使用
- * desc: 全部的值默认为 `""`，可通过 `allValue` 进行设置
+ * title: Form 中使用 Radio
  */
 
 import React, { useState, useCallback } from "react";
 import { Form, Button } from "antd";
 import Dictionary from "..";
 
-const enumStatus = [
+const enumSchool = [
   {
-    value: 1,
-    name: '审核中'
+    value: '0',
+    name: '小学'
   },
   {
-    value: 2,
-    name: '审核通过'
+    value: '1',
+    name: '初中'
   },
   {
-    value: 3,
-    name: '审核不通过'
+    value: '2',
+    name: '高中'
+  },
+  {
+    value: '3',
+    name: '大学',
+    disabled: true
   },
 ];
 
@@ -31,7 +35,7 @@ const buttonItemLayouts = {
   wrapperCol: { span: 16, offset: 6 }
 }
 
-const initialValues = {};
+const initialValues = { school: enumSchool[0].value };
 
 export default () => {
   const [result, setResult] = useState(initialValues);
@@ -45,10 +49,10 @@ export default () => {
         {...formItemLayouts}
         initialValues={initialValues}
         onFinish={onFinish}
-        name="select_1"
+        name="radio_1"
       >
-        <Form.Item label="审核状态" name="status">
-          <Dictionary.Select data={enumStatus} />
+        <Form.Item label="学校" name="school">
+          <Dictionary.Radio data={enumSchool} />
         </Form.Item>
         <Form.Item {...buttonItemLayouts}>
           <Button type="primary" htmlType="submit">Submit</Button>

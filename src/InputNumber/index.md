@@ -40,7 +40,7 @@ npm i antd
 
 参数 | 说明 | 类型 | 默认值 |
 ------------- | ------------- | ------------- | ------------- |
-before  | 输入框前面元素 | `string|ReactNode` | - |
-after  | 输入框后面元素 | `string|ReactNode` | - |
+before  | 输入框前面元素 | `string` `ReactNode` | - |
+after  | 输入框后面元素 | `string` `ReactNode` | - |
 style  | 样式 | `object` | `{}` |
 className  | `class` 类名 | `string` | `""` |

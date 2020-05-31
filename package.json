@@ -23,7 +23,8 @@
   "dependencies": {
     "rc-countdown-view": "^1.0.0",
     "rc-hooks": "^0.5.1",
-    "react-color": "^2.18.0"
+    "react-color": "^2.18.0",
+    "util-helpers": "^3.5.0"
   },
   "devDependencies": {
     "@ant-design/icons": "^4.1.0",

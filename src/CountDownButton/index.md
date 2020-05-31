@@ -29,9 +29,13 @@ npm i antd rc-countdown-view
 
 ## 代码演示
 
-### 获取验证码
+### 基础用法
 
 <code src="./demo/Demo1.jsx" />
+
+### 获取手机验证码
+
+<code src="./demo/Demo2.jsx" />
 
 ## API
 

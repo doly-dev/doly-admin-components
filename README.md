@@ -15,10 +15,10 @@
 
 - 通用组件
   - [Color] - 显示颜色、选择颜色
-  - [Dictionary] - `数据字典` 的显示和选择
+  - [Dictionary] - 数据字典显示和选择
   - [InputNumber] - 用于获取标准数值，基于 `antd InputNumber` 扩展
   - [CountDownButton] - 倒计时按钮，如获取验证码
-  - [CascaderWithInput] - Cascader 和 Input 组件结合，常用于省市区+详细地址
+  - [CascaderWithInput] - `Cascader` 和 `Input` 组件结合，常用于省市区+详细地址
 - 业务组件
   - [SearchForm] - 查询表单
 

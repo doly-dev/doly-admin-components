@@ -14,9 +14,11 @@
 ## 已有组件
 
 - 通用组件
-  - [Color] - 显示颜色、选择颜色，可直接用于 `antd` 表单中。
-  - [Dictionary] - `数据字典` 的显示 和 选择，可直接用于 `antd` 表单中。
+  - [Color] - 显示颜色、选择颜色
+  - [Dictionary] - `数据字典` 的显示和选择
+  - [InputNumber] - 用于获取标准数值，基于 `antd InputNumber` 扩展
   - [CountDownButton] - 倒计时按钮，如获取验证码
+  - [CascaderWithInput] - Cascader 和 Input 组件结合，常用于省市区+详细地址
 - 业务组件
   - [SearchForm] - 查询表单
 
@@ -53,6 +55,8 @@ npm run build:doc
 
 [Color]: https://doly-dev.github.io/doly-admin-components/site/#/common/color
 [Dictionary]: https://doly-dev.github.io/doly-admin-components/site/#/common/dictionary
+[InputNumber]: https://doly-dev.github.io/doly-admin-components/site/#/common/input-number
 [CountDownButton]: https://doly-dev.github.io/doly-admin-components/site/#/common/count-down-button
+[CascaderWithInput]: https://doly-dev.github.io/doly-admin-components/site/#/common/cascader-with-input
 
 [SearchForm]: https://doly-dev.github.io/doly-admin-components/site/#/business/search-form

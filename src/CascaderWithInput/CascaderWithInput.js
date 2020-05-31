@@ -3,7 +3,7 @@ import { Row, Col, Input, Cascader } from "antd";
 
 export default ({
   id = "",
-  data = [],
+  options = [],
   value = [[], ""],
   onChange = () => { },
   onBlur = null, // 表示 validateTrigger 设置为 onBlur
@@ -48,7 +48,7 @@ export default ({
           placeholder="请选择"
           {...cascaderProps}
           style={{ width: "100%", ...cascaderProps.style }}
-          options={data}
+          options={options}
           value={cascaderValue}
           onChange={onCascaderChange}
         />

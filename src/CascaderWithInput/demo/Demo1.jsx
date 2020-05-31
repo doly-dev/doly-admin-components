@@ -16,7 +16,7 @@ export default () => {
 
   return (
     <>
-      <CascaderWithInput value={value} data={lcnData} onChange={onChange} />
+      <CascaderWithInput value={value} options={lcnData} onChange={onChange} />
       <br />
       <div>value: {JSON.stringify(value)}</div>
     </>

@@ -84,7 +84,7 @@ export default () => {
           validateTrigger="onBlur"
         >
           <CascaderWithInput
-            data={lcnData}
+            options={lcnData}
             form={form}
             cascaderProps={{ placeholder: "请选择省/市/区" }}
             inputProps={{ placeholder: "请输入详细地址" }}

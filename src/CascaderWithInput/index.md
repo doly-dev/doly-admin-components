@@ -37,7 +37,7 @@ npm i antd
 参数 | 说明 | 类型 | 默认值 |
 ------------- | ------------- | ------------- | ------------- |
 value  | 指定选中项和输入框的值 | `array<array, string>` | `[[],""]` |
-data  | 可选项数据源 | `string` | `init` |
+options  | 可选项数据源 | `array` | `[]` |
 onChange  | 值改变后的回调 | `(value) => void` | - |
 cascaderProps  | [`Cascader`](https://ant.design/components/cascader-cn/#API)组件配置项 | `object` | - |
 inputProps | [`Input`](https://ant.design/components/input-cn/#API)组件配置项 | `object` | - |

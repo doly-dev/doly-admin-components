@@ -52,7 +52,6 @@ export default () => {
         onFinish={onFinish}
         initialValues={initialValues}
         form={form}
-        name="cascader_with_input_2"
       >
         <Form.Item
           label="所在地址"

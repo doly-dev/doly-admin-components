@@ -1,6 +1,8 @@
 import React, { useRef, useCallback } from "react";
 import { Row, Col, Input, Cascader } from "antd";
 
+const fieldNameDivide = "_";
+
 export default ({
   id = "",
   options = [],
@@ -9,7 +11,8 @@ export default ({
   onBlur = null, // 表示 validateTrigger 设置为 onBlur
   form = null,
   cascaderProps = {},
-  inputProps = {}
+  inputProps = {},
+  ...restProps
 }) => {
   const inputRef = useRef(null);
   const cascaderValue = value[0];
@@ -18,7 +21,11 @@ export default ({
   // 表单blur校验
   const validateForBlur = useCallback(() => {
     if (onBlur && form && form.validateFields) {
-      form.validateFields([id.split('_')]);
+      let fieldNamePath = id;
+      if (form.__INTERNAL__ && form.__INTERNAL__.name) {
+        fieldNamePath = fieldNamePath.replace(`${form.__INTERNAL__.name}${fieldNameDivide}`, "");
+      }
+      form.validateFields([fieldNamePath.split(fieldNameDivide)]);
     }
   }, []);
 

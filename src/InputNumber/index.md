@@ -34,8 +34,6 @@ npm i antd
 
 ## API
 
-### InputNumber
-
 除了以下参数，其余和 [`antd InputNumber`](https://ant.design/components/input-number-cn/) 组件一样。
 
 参数 | 说明 | 类型 | 默认值 |

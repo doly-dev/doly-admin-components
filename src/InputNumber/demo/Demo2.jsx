@@ -14,16 +14,24 @@ export default () => {
       <Row>
         <Col {...twoColSpan}>
           <Form.Item
-            label="支付宝费率"
+            label="费率"
             name="alipayFee"
             rules={[
               {
                 required: true,
-                message: "请输入支付宝费率"
+                message: "请输入费率"
+              },
+              {
+                min: 0.01,
+                max: 99.99,
+                type: "number",
+                message: "须大于0，小于100"
               }
             ]}
+            validateFirst
+            validateTrigger="onBlur"
           >
-            <InputNumber placeholder="须大于1，小于10" precision={2} min={1} max={10} after="%" />
+            <InputNumber placeholder="请输入" precision={2} after="%" />
           </Form.Item>
         </Col>
         <Col {...twoColSpan}>
@@ -34,10 +42,17 @@ export default () => {
               {
                 required: true,
                 message: "请输入封顶金额"
+              },
+              {
+                min: 1,
+                type: "number",
+                message: "须大于等于1"
               }
             ]}
+            validateFirst
+            validateTrigger="onBlur"
           >
-            <InputNumber placeholder="请输入" precision={2} min={1} max={100} after="元/笔" />
+            <InputNumber placeholder="请输入" after="元/笔" />
           </Form.Item>
         </Col>
       </Row>

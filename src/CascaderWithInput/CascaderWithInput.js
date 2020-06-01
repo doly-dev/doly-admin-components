@@ -7,12 +7,11 @@ export default ({
   id = "",
   options = [],
   value = [[], ""],
-  onChange = () => { },
+  onChange = () => {},
   onBlur = null, // 表示 validateTrigger 设置为 onBlur
   form = null,
   cascaderProps = {},
-  inputProps = {},
-  ...restProps
+  inputProps = {}
 }) => {
   const inputRef = useRef(null);
   const cascaderValue = value[0];
@@ -22,8 +21,14 @@ export default ({
   const validateForBlur = useCallback(() => {
     if (onBlur && form && form.validateFields) {
       let fieldNamePath = id;
+      // fix：form设置了name，导致验证失效
+      // eslint-disable-next-line no-underscore-dangle
       if (form.__INTERNAL__ && form.__INTERNAL__.name) {
-        fieldNamePath = fieldNamePath.replace(`${form.__INTERNAL__.name}${fieldNameDivide}`, "");
+        fieldNamePath = fieldNamePath.replace(
+          // eslint-disable-next-line no-underscore-dangle
+          `${form.__INTERNAL__.name}${fieldNameDivide}`,
+          ""
+        );
       }
       form.validateFields([fieldNamePath.split(fieldNameDivide)]);
     }
@@ -74,4 +79,4 @@ export default ({
       </Col>
     </Row>
   );
-}
+};

@@ -39,7 +39,7 @@ npm i antd
 
 <code src="./demo/Demo1.jsx" />
 
-### 状态 & 颜色
+### 多种展示方式
 
 <code src="./demo/Demo1.1.jsx" />
 

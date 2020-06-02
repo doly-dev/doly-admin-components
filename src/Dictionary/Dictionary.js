@@ -1,22 +1,22 @@
 import React from "react";
-import { Badge } from "antd";
+import { Badge, Tag } from "antd";
 
-const suportStatus = ["success", "processing", "default", "error", "warning"];
+export default ({ data = [], value = "", defaultName = "-", type = "text", optionName = "", ...restProps }) => {
+  const ret = data.find(item => item.value === value);
 
-export default ({ data = [], value = "", defaultName = "-" }) => {
-  const ret = data.find(item => item.value === value) || {};
-
-  if (!ret.name) {
+  if (!ret) {
     return defaultName;
   }
 
-  if (ret.color) {
-    return <span style={{ color: ret.color }}>{ret.name}</span>
+  let options = (optionName ? ret[optionName] : ret[type]) || {};
+
+  if (type === "tag") {
+    return <Tag {...options} {...restProps}>{options.alias || ret.name}</Tag>
   }
 
-  if (ret.status && suportStatus.indexOf(ret.status) > -1) {
-    return <Badge status={ret.status} text={ret.name} />
+  if (type === "badge") {
+    return <Badge text={options.alias || ret.name} {...options} {...restProps} />;
   }
 
-  return ret.name;
-}
+  return <span {...options} {...restProps}>{options.alias || ret.name}</span>;
+};

@@ -21,7 +21,7 @@ npm i antd@4
 
 ## 代码演示
 
-### 注册
+### 创建用户
 
 <code src="./demo/Demo1.jsx" />
 

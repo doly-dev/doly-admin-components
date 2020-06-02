@@ -76,6 +76,7 @@ npm i antd
 data  | 包含 `value` `name` 的 `数据字典` | `array<object>` | `[]` |
 value  | 当前字典值 | `any` | - |
 defaultName  | 当找不到字典值对应的名称时，显示默认名称 | `string` | `-` |
+type  | 显示方式，支持 `text` `tag` `badge` | `string` | `text` |
 
 ### Dictionary.Select
 

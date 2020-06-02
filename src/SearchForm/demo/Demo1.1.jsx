@@ -20,17 +20,24 @@ const enumApproveResult = [
   {
     name: "待审核",
     value: 1,
-    status: "processing"
+    badge: {
+      status: "processing"
+    }
+
   },
   {
     name: "审核通过",
     value: 2,
-    status: "success"
+    badge: {
+      status: "success"
+    }
   },
   {
     name: "审核拒绝",
     value: 3,
-    status: "error"
+    badge: {
+      status: "error"
+    }
   },
 ];
 
@@ -83,7 +90,7 @@ const columns = [
   {
     dataIndex: "approveResult",
     title: "审核状态",
-    render: text => <Dictionary data={enumApproveResult} value={text} />
+    render: text => <Dictionary data={enumApproveResult} value={text} type="badge" />
   },
   {
     title: "操作",

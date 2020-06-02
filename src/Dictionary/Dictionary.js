@@ -8,7 +8,7 @@ export default ({ data = [], value = "", defaultName = "-", type = "text", optio
     return defaultName;
   }
 
-  let options = (optionName ? ret[optionName] : ret[type]) || {};
+  const options = (optionName ? ret[optionName] : ret[type]) || {};
 
   if (type === "tag") {
     return <Tag {...options} {...restProps}>{options.alias || ret.name}</Tag>

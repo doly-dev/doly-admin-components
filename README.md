@@ -20,6 +20,7 @@
   - [CountDownButton] - 倒计时按钮，如获取验证码
   - [CascaderWithInput] - `Cascader` 和 `Input` 组件结合，常用于省市区+详细地址
 - 业务组件
+  - [CommonForm] - 常用表单及校验
   - [SearchForm] - 查询表单
 
 ## 参与开发
@@ -60,3 +61,4 @@ npm run build:doc
 [CascaderWithInput]: https://doly-dev.github.io/doly-admin-components/site/#/common/cascader-with-input
 
 [SearchForm]: https://doly-dev.github.io/doly-admin-components/site/#/business/search-form
+[CommonForm]: https://doly-dev.github.io/doly-admin-components/site/#/business/common-form

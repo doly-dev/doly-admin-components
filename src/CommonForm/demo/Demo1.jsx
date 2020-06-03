@@ -2,6 +2,17 @@ import React, { useCallback } from "react";
 import { Form, Input, Button } from "antd";
 import { isMobile, isEmail, isPassword, isIdCard } from "util-helpers";
 
+// 去掉空格
+function removeWhiteSpace(val) {
+  if (typeof val === "string") {
+    return val.replace(/\s/g, "");
+  }
+  return val;
+}
+
+// 正则，1开头
+const oneNumberFirstReg = /^1/;
+
 const formItemLayout = {
   labelCol: { span: 5 },
   wrapperCol: { span: 16 }
@@ -16,23 +27,12 @@ const buttonItemLayout = {
 };
 const initialValues = {
   userName: "",
-  loginUserName: "",
+  loginName: "",
   mobile: "",
   email: "",
-  userIdCard: "",
+  idCard: "",
   password: "",
 }
-
-// 去掉空格
-function normalizeWhiteSpace(val) {
-  if (typeof val === "string") {
-    return val.replace(/\s/g, "");
-  }
-  return val;
-}
-
-// 正则，1开头
-const oneNumberFirstReg = /^1/;
 
 export default () => {
   const [form] = Form.useForm();
@@ -44,9 +44,7 @@ export default () => {
   const onFinishFailed = useCallback(({ errorFields }) => {
     form.scrollToField(errorFields[0].name, {
       behavior: actions =>
-        // list is sorted from innermost (closest parent to your target) to outermost (often the document.body or viewport)
         actions.forEach(({ el, top }) => {
-          // implement the scroll anyway you want
           el.scrollTop = top - 88;
         })
     });
@@ -64,8 +62,7 @@ export default () => {
       <Form.Item
         label="姓名"
         name="userName"
-        normalize={normalizeWhiteSpace}
-        validateFirst
+        normalize={removeWhiteSpace}
         validateTrigger="onBlur"
         required
         rules={[
@@ -89,9 +86,8 @@ export default () => {
       </Form.Item>
       <Form.Item
         label="用户名"
-        name="loginUserName"
-        normalize={normalizeWhiteSpace}
-        validateFirst
+        name="loginName"
+        normalize={removeWhiteSpace}
         validateTrigger="onBlur"
         required
         rules={[
@@ -117,13 +113,12 @@ export default () => {
           }
         ]}
       >
-        <Input placeholder="请输入姓名" maxLength={32} allowClear autoComplete="off" />
+        <Input placeholder="请输入用户名" maxLength={32} allowClear autoComplete="off" />
       </Form.Item>
       <Form.Item
         label="身份证号"
-        name="userIdCard"
-        normalize={normalizeWhiteSpace}
-        validateFirst
+        name="idCard"
+        normalize={removeWhiteSpace}
         validateTrigger="onBlur"
         required
         rules={[
@@ -143,13 +138,12 @@ export default () => {
           }
         ]}
       >
-        <Input placeholder="请输入手机号码" allowClear autoComplete="off" />
+        <Input placeholder="请输入身份证号" maxLength={18} allowClear autoComplete="off" />
       </Form.Item>
       <Form.Item
         label="手机号码"
         name="mobile"
-        normalize={normalizeWhiteSpace}
-        validateFirst
+        normalize={removeWhiteSpace}
         validateTrigger="onBlur"
         required
         rules={[
@@ -159,7 +153,7 @@ export default () => {
               if (!value) {
                 errMsg = "请输入手机号码";
               } else if (!isMobile(value)) {
-                errMsg = "请输入有效的手机号码";
+                errMsg = "请输入正确的手机号码";
               }
               if (errMsg) {
                 return Promise.reject(errMsg);
@@ -169,13 +163,12 @@ export default () => {
           }
         ]}
       >
-        <Input placeholder="请输入手机号码" allowClear autoComplete="off" />
+        <Input placeholder="请输入手机号码" maxLength={11} allowClear autoComplete="off" />
       </Form.Item>
       <Form.Item
         label="邮箱"
         name="email"
-        normalize={normalizeWhiteSpace}
-        validateFirst
+        normalize={removeWhiteSpace}
         validateTrigger="onBlur"
         rules={[
           {
@@ -193,8 +186,7 @@ export default () => {
       <Form.Item
         label="密码"
         name="password"
-        normalize={normalizeWhiteSpace}
-        validateFirst
+        normalize={removeWhiteSpace}
         validateTrigger="onBlur"
         required
         rules={[
@@ -205,7 +197,7 @@ export default () => {
                 errMsg = "请输入密码";
               } else if (value.length < 8) {
                 errMsg = "密码不能小于8位";
-              } else if (!isPassword(value, { level: 2, ignoreCase: true })) {
+              } else if (!isPassword(value, { level: 2 })) {
                 errMsg = "密码为字母、数字或符号任意两者组合";
               }
               if (errMsg) {
@@ -216,7 +208,7 @@ export default () => {
           }
         ]}
       >
-        <Input.Password placeholder="请输入密码" allowClear />
+        <Input.Password placeholder="请输入密码" maxLength={16} allowClear />
       </Form.Item>
       <Form.Item {...buttonItemLayout}>
         <Button type="primary" htmlType="submit">提交</Button>

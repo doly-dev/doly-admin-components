@@ -1,3 +1,7 @@
+/**
+ * title: 返佣信息
+ * desc: 注意 `InputNumber` 返回的是 `number` 类型
+ */
 import React, { useCallback } from "react";
 import { Form, Button, Row, Col, Tooltip } from "antd";
 import { InfoCircleOutlined } from "@ant-design/icons";

@@ -49,4 +49,4 @@ npm i antd@4
 
 ### 脱敏校验
 
-施工中...
+<code src="./demo/Demo7.jsx" />

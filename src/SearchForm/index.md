@@ -35,6 +35,10 @@ npm i antd@4
 
 <code src="./demo/Demo1.1.jsx" />
 
+### 缓存查询条件
+
+<code src="./demo/Demo1.2.jsx" />
+
 ## API
 
 参数 | 说明 | 类型 | 默认值 |
@@ -43,3 +47,4 @@ onSubmit | 提交表单且数据验证成功后回调事件 | `function` | `(val
 submitOnMount  | 初次加载提交表单 | `boolean` | `false` |
 loading  | 查询 loading | `boolean` | `false` |
 name  | 表单名称，会作为表单字段 `id` 前缀使用 | `string` | - |
+defaultValues | 初次加载会跟初始值合并 | `object` | - |

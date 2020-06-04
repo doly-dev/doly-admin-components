@@ -75,7 +75,7 @@ const initialValues = {
   approveTime: []
 };
 
-export default ({ onSubmit = () => { }, name = "approve", submitOnMount = false, loading = false }) => {
+export default ({ onSubmit = () => { }, name = "approve", submitOnMount = false, loading = false, defaultValues = {} }) => {
   const [form] = Form.useForm();
 
   const onFinish = useCallback(({ applyTime, approveTime, ...restValues }) => {
@@ -102,6 +102,7 @@ export default ({ onSubmit = () => { }, name = "approve", submitOnMount = false,
 
   // 初次加载提交
   useEffect(() => {
+    form.setFieldsValue({ ...initialValues, ...defaultValues });
     if (submitOnMount) {
       form.submit();
     }

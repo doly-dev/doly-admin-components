@@ -100,10 +100,10 @@ function removeWhiteSpace(val) {
 }
 
 // 验证密码
-function verifierPassword(value) {
+function verifierPassword(value, label = "密码") {
   let errMsg = "";
   if (!value) {
-    errMsg = "请输入原密码"
+    errMsg = `请输入${label}`;
   } else if (value.length < 8) {
     errMsg = "密码不能小于8位";
   } else if (!isPassword(value, { level: 2 })) {
@@ -223,7 +223,7 @@ export default () => {
         rules={[
           ({ getFieldValue, validateFields }) => ({
             validator(rule, value) {
-              const validateResult = verifierPassword(value);
+              const validateResult = verifierPassword(value, "新密码");
 
               // 如果重复新密码有值，校验重复新密码
               if (getFieldValue("repetPassword")) {

@@ -203,7 +203,6 @@ export default () => {
           <Form.Item
             label="开户银行名称"
             name="bankName"
-            normalize={removeWhiteSpace}
             validateTrigger="onBlur"
             required
             rules={[

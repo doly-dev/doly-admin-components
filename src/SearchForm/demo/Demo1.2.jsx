@@ -105,7 +105,10 @@ const columns = [
 
 // 缓存查询条件
 let cacheValues = {
-  params: {},
+  params: {
+    code: "", // 申请编号
+    approverName: "", // 审核人姓名
+  },
   pages: {}
 };
 

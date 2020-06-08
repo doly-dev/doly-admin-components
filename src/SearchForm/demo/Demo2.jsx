@@ -92,7 +92,7 @@ export default ({ onSubmit = () => { }, name = "approve", submitOnMount = false,
     }
 
     onSubmit(ret);
-  }, []);
+  }, [onSubmit]);
 
   // 重置表单再提交
   const handleReset = useCallback(() => {

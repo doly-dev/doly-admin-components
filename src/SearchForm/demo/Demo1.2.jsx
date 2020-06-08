@@ -138,7 +138,7 @@ export default () => {
         onSubmit={run}
         loading={loading}
         defaultValues={cacheValues.params}
-        name="apply_test"
+        name="search_form_1-2"
       />
       <Table
         dataSource={data}

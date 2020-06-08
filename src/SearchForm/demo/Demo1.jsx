@@ -89,7 +89,7 @@ export default ({ onSubmit = () => { }, name = "apply", submitOnMount = false, l
     }
 
     onSubmit(ret);
-  }, []);
+  }, [onSubmit]);
 
   // 重置表单再提交
   const handleReset = useCallback(() => {

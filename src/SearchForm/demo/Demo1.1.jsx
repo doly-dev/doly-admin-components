@@ -112,7 +112,7 @@ export default () => {
         onSubmit={run}
         submitOnMount
         loading={loading}
-        name="apply_test"
+        name="search_form_1-1"
       />
       <Table
         dataSource={data}

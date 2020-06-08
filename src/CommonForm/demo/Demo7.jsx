@@ -17,8 +17,13 @@ function removeWhiteSpace(val) {
   return val;
 }
 
-// 正则，1开头
-const oneNumberFirstReg = /^1/;
+// 转为大写
+function transformToUpperCase(str) {
+  if (typeof str === "string") {
+    return str.toUpperCase();
+  }
+  return str;
+}
 
 const formItemLayout = {
   labelCol: { span: 5 },
@@ -92,7 +97,7 @@ export default () => {
       <Form.Item
         label="身份证号"
         name="idCard"
-        normalize={removeWhiteSpace}
+        normalize={val => transformToUpperCase(removeWhiteSpace(val))}
         validateTrigger="onBlur"
         required
         rules={[

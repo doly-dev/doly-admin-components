@@ -21,6 +21,14 @@ function removeWhiteSpace(val) {
   return val;
 }
 
+// 转为大写
+function transformToUpperCase(str) {
+  if (typeof str === "string") {
+    return str.toUpperCase();
+  }
+  return str;
+}
+
 const oneColSpan = {
   span: 24
 };
@@ -101,6 +109,7 @@ export default () => {
             label="营业执照号"
             name="businessRegno"
             validateTrigger="onBlur"
+            normalize={val => transformToUpperCase(removeWhiteSpace(val))}
             required
             rules={[
               {
@@ -156,7 +165,7 @@ export default () => {
           <Form.Item
             label="法人身份证号"
             name="legalIdCard"
-            normalize={removeWhiteSpace}
+            normalize={val => transformToUpperCase(removeWhiteSpace(val))}
             validateTrigger="onBlur"
             required
             rules={[

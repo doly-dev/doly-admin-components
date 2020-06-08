@@ -122,7 +122,7 @@ export default () => {
               }
             ]}
           >
-            <Input placeholder="请输入公司统一社会信用代码或营业执照号" allowClear autoComplete="off" />
+            <Input placeholder="请输入公司统一社会信用代码或营业执照号" maxLength={18} allowClear autoComplete="off" />
           </Form.Item>
         </Col>
         <Col {...twoColSpan}>
@@ -176,7 +176,7 @@ export default () => {
               }
             ]}
           >
-            <Input placeholder="请输入法人身份证号" allowClear autoComplete="off" />
+            <Input placeholder="请输入法人身份证号" maxLength={18} allowClear autoComplete="off" />
           </Form.Item>
         </Col>
         <Col {...twoColSpan}>
@@ -203,7 +203,7 @@ export default () => {
               }
             ]}
           >
-            <Input placeholder="请输入法人手机号" allowClear autoComplete="off" />
+            <Input placeholder="请输入法人手机号" maxLength={11} allowClear autoComplete="off" />
           </Form.Item>
         </Col>
       </Row>

@@ -18,9 +18,6 @@ function transformToUpperCase(str) {
   return str;
 }
 
-// 正则，1开头
-const oneNumberFirstReg = /^1/;
-
 const formItemLayout = {
   labelCol: { span: 5 },
   wrapperCol: { span: 16 }
@@ -104,14 +101,12 @@ export default () => {
               let errMsg = "";
               if (!value) {
                 errMsg = "请输入用户名";
-              } else if (oneNumberFirstReg.test(value)) {
-                errMsg = "不能以“1”开头";
+              } else if (value.length < 6 || value.length > 32) {
+                errMsg = "用户名为6~32位";
+              } else if (isMobile(value)) {
+                errMsg = "用户名不能为手机号码";
               } else if (value.indexOf("@") > -1) {
-                errMsg = "不能包含@符号";
-              } else if (value.length < 6) {
-                errMsg = "不能小于6位";
-              } else if (value.length > 32) {
-                errMsg = "不能超过32位";
+                errMsg = "用户名不能包含空格和@符号";
               }
               if (errMsg) {
                 return Promise.reject(errMsg);

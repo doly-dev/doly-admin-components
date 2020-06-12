@@ -15,6 +15,24 @@ import Dictionary from "../../Dictionary";
 
 import styles from './style.less';
 
+// 内存缓存
+// 如果有登录/登出，再退出登录时需要清理内存缓存
+const memoryCache = {
+  __data: {},
+  get(key) {
+    return this.__data[key];
+  },
+  set(key, value) {
+    this.__data[key] = value;
+  },
+  remote(key) {
+    delete this.__data[key];
+  },
+  clear() {
+    this.__data = {};
+  }
+}
+
 // 审核状态字典，尽量在 src/constants 中维护。
 const enumApproveResult = [
   {
@@ -103,21 +121,18 @@ const columns = [
   }
 ];
 
-// 缓存查询条件
-let cacheValues = {
-  params: {
-    code: "", // 申请编号
-    approverName: "", // 审核人姓名
-  },
-  pages: {}
-};
+// 缓存键值
+const cacheKey = 'search_form_values';
 
 export default () => {
+  let cacheValues = memoryCache.get(cacheKey);
+
   const { data, run, loading, changePagination, pagination } = usePagination(getApplyList, {
-    defaultPageNum: cacheValues.pages.pageNum,
-    defaultPageSize: cacheValues.pages.pageSize,
-    defaultTotal: cacheValues.pages.total,
-    defaultParams: cacheValues.params,
+    defaultPageNum: cacheValues ? cacheValues.pages.pageNum : 1,
+    defaultPageSize: cacheValues ? cacheValues.pages.pageSize : 10,
+    defaultTotal: cacheValues ? cacheValues.pages.total : 0,
+    defaultParams: cacheValues ? cacheValues.params : {},
+    authRun: !!cacheValues,
     onSuccess: (res, params) => {
       // 更新缓存查询条件
       const { pageNum, pageSize, ...restParams } = params[0];
@@ -129,6 +144,7 @@ export default () => {
           total: res.pageInfo.total
         }
       }
+      memoryCache.set(cacheKey, cacheValues);
     }
   });
 
@@ -137,7 +153,8 @@ export default () => {
       <Demo1
         onSubmit={run}
         loading={loading}
-        defaultValues={cacheValues.params}
+        submitOnMount={!cacheValues}
+        defaultValues={cacheValues ? cacheValues.params : null}
         name="search_form_1-2"
       />
       <Table

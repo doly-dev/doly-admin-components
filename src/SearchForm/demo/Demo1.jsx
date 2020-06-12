@@ -59,6 +59,9 @@ const buttonItemLayout = {
   }
 }
 
+// 默认日期格式
+const defaultDateFormat = "YYYY-MM-DD";
+
 // 初始值
 const initialValues = {
   code: "", // 申请编号
@@ -79,13 +82,13 @@ export default ({ onSubmit = () => { }, name = "apply", submitOnMount = false, l
     const ret = { ...restValues };
 
     if (applyTime && applyTime.length > 0) {
-      ret.applyStartTime = `${applyTime[0].format("YYYY-MM-DD")} 00:00:00`;
-      ret.applyEndTime = `${applyTime[1].format("YYYY-MM-DD")} 23:59:59`;
+      ret.applyStartTime = `${applyTime[0].format(defaultDateFormat)} 00:00:00`;
+      ret.applyEndTime = `${applyTime[1].format(defaultDateFormat)} 23:59:59`;
     }
 
     if (approveTime && approveTime.length > 0) {
-      ret.approveStartTime = `${approveTime[0].format("YYYY-MM-DD")} 00:00:00`;
-      ret.approveEndTime = `${approveTime[1].format("YYYY-MM-DD")} 23:59:59`;
+      ret.approveStartTime = `${approveTime[0].format(defaultDateFormat)} 00:00:00`;
+      ret.approveEndTime = `${approveTime[1].format(defaultDateFormat)} 23:59:59`;
     }
 
     onSubmit(ret);
@@ -99,7 +102,27 @@ export default ({ onSubmit = () => { }, name = "apply", submitOnMount = false, l
 
   // 初次加载提交
   useEffect(() => {
-    form.setFieldsValue({ ...initialValues, ...defaultValues });
+    if (defaultValues) {
+      const { applyStartTime, applyEndTime, approveStartTime, approveEndTime, ...resetDefaultValues } = defaultValues;
+      const initValues = {
+        ...initialValues,
+        ...resetDefaultValues
+      };
+      if (applyStartTime && applyEndTime) {
+        initValues.applyTime = [
+          moment(applyStartTime),
+          moment(applyEndTime)
+        ];
+      }
+      if (applyStartTime && applyEndTime) {
+        initValues.approveTime = [
+          moment(approveStartTime),
+          moment(approveEndTime)
+        ];
+      }
+      form.setFieldsValue(initValues);
+    }
+
     if (submitOnMount) {
       form.submit();
     }

@@ -18,6 +18,33 @@ function transformToUpperCase(str) {
   return str;
 }
 
+// 过滤密码的数字、字母，剩余的为特殊字符
+const checkSpecialChar = (val, supportSpecialChars = "-_!@#$%^&*") => {
+  const ret = {
+    validated: true,
+    message: ""
+  }
+  // 过滤出特殊字符
+  const specialChar = val.replace(/[a-z]/gi, "").replace(/\d/g, "");
+
+  // 不存在特殊字符
+  if (specialChar.length <= 0) {
+    return ret;
+  }
+
+  // 当前特殊字符拆分数组
+  const specialCharArr = specialChar.split("");
+  specialCharArr.some(item => {
+    if (supportSpecialChars.indexOf(item) === -1) {
+      ret.validated = false;
+      ret.message = `密码的特殊符号只能为${supportSpecialChars}`;
+    }
+    return !ret.validated
+  });
+
+  return ret;
+}
+
 const formItemLayout = {
   labelCol: { span: 5 },
   wrapperCol: { span: 16 }
@@ -76,8 +103,8 @@ export default () => {
               let errMsg = "";
               if (!value) {
                 errMsg = "请输入姓名";
-              } else if (value.length > 6) {
-                errMsg = "不能超过6位";
+              } else if (value.length > 32 || value.length < 2) {
+                errMsg = "姓名为2～32位";
               }
               if (errMsg) {
                 return Promise.reject(errMsg);
@@ -131,7 +158,7 @@ export default () => {
               if (!value) {
                 errMsg = "请输入身份证号";
               } else if (!isIdCard(value)) {
-                errMsg = "请输入有效的身份证号";
+                errMsg = "请输入正确的身份证号";
               }
               if (errMsg) {
                 return Promise.reject(errMsg);
@@ -197,10 +224,16 @@ export default () => {
               let errMsg = "";
               if (!value) {
                 errMsg = "请输入密码";
-              } else if (value.length < 8) {
-                errMsg = "密码不能小于8位";
-              } else if (!isPassword(value, { level: 2 })) {
-                errMsg = "密码为字母、数字或符号任意两者组合";
+              } else if (value.length < 8 || value.length > 16) {
+                errMsg = "密码为8～16位";
+              } else {
+                // 校验特殊字符
+                const validateSpecialChar = checkSpecialChar(value);
+                if (!validateSpecialChar.validated) {
+                  errMsg = validateSpecialChar.message;
+                } else if (!isPassword(value, { level: 2 })) {
+                  errMsg = "密码为大小写字母、数字或符号任意两者组合";
+                }
               }
               if (errMsg) {
                 return Promise.reject(errMsg);

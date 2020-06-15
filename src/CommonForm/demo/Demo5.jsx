@@ -1,13 +1,15 @@
+/**
+ * title: 结算信息
+ * desc: |
+ *    这里 `银行卡号` 仅校验非空，如果要在前端验证可参考《[常用银行账号位数参考](https://kf.qq.com/faq/170112ABnm6b170112FvquAn.html)》。正常情况下，需要走服务端校验。
+ */
 import React, { useCallback } from "react";
 import { Form, Input, Button, Row, Col } from "antd";
 import lcnPCForm from "lcn/lcn_pc-form";
-import { CardBin } from "bankcard";
 
 import Dictionary from "../../Dictionary";
 import CascaderWithInput from "../../CascaderWithInput";
 import styles from "./style.less";
-
-const bc = new CardBin();
 
 // 下面的枚举值请在单独文件维护
 // 结算方式
@@ -182,11 +184,6 @@ export default () => {
                   let errMsg = "";
                   if (!value) {
                     errMsg = "请输入银行卡号";
-                  } else {
-                    const validateResult = bc.validateCardInfo(value).validated;
-                    if (!validateResult.validated) {
-                      errMsg = validateResult.message;
-                    }
                   }
                   if (errMsg) {
                     return Promise.reject(errMsg);

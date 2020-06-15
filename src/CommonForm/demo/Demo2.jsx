@@ -2,15 +2,48 @@ import React, { useCallback } from "react";
 import { Form, Input, Button } from "antd";
 import { isPassword } from "util-helpers";
 
+// 过滤密码的数字、字母，剩余的为特殊字符
+const checkSpecialChar = (val, supportSpecialChars = "-_!@#$%^&*") => {
+  const ret = {
+    validated: true,
+    message: ""
+  }
+  // 过滤出特殊字符
+  const specialChar = val.replace(/[a-z]/gi, "").replace(/\d/g, "");
+
+  // 不存在特殊字符
+  if (specialChar.length <= 0) {
+    return ret;
+  }
+
+  // 当前特殊字符拆分数组
+  const specialCharArr = specialChar.split("");
+  specialCharArr.some(item => {
+    if (supportSpecialChars.indexOf(item) === -1) {
+      ret.validated = false;
+      ret.message = `密码的特殊符号只能为${supportSpecialChars}`;
+    }
+    return !ret.validated
+  });
+
+  return ret;
+}
+
 // 验证密码
 function verifierPassword(value, label = "密码") {
   let errMsg = "";
   if (!value) {
     errMsg = `请输入${label}`;
-  } else if (value.length < 8) {
-    errMsg = "密码不能小于8位";
-  } else if (!isPassword(value, { level: 2 })) {
-    errMsg = "密码为字母、数字或符号任意两者组合";
+  } else if (value.length < 8 || value.length > 16) {
+    errMsg = "密码为8～16位";
+  } else {
+    // 校验特殊字符
+    const validateSpecialChar = checkSpecialChar(value);
+    if (!validateSpecialChar.validated) {
+      errMsg = validateSpecialChar.message;
+    } else if (!isPassword(value, { level: 2 })) {
+      errMsg = "密码为大小写字母、数字或符号任意两者组合";
+    }
   }
   return {
     validated: !errMsg,

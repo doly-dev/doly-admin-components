@@ -116,12 +116,12 @@ export default () => {
                 validator: (rule, value) => {
                   let errMsg = "";
                   if (!value) {
-                    errMsg = "请输入公司统一社会信用代码或营业执照号"
+                    errMsg = "请输入统一社会信用代码或营业执照号"
                   } else if (
                     !isSocialCreditCode(value) &&
                     !isBusinessLicense(value)
                   ) {
-                    errMsg = "格式错误";
+                    errMsg = "请输入正确的营业执照号";
                   }
                   if (errMsg) {
                     return Promise.reject(errMsg);
@@ -131,7 +131,7 @@ export default () => {
               }
             ]}
           >
-            <Input placeholder="请输入公司统一社会信用代码或营业执照号" maxLength={18} allowClear autoComplete="off" />
+            <Input placeholder="请输入统一社会信用代码或营业执照号" maxLength={18} allowClear autoComplete="off" />
           </Form.Item>
         </Col>
         <Col {...twoColSpan}>
@@ -147,6 +147,8 @@ export default () => {
                   let errMsg = "";
                   if (!value) {
                     errMsg = "请输入法人姓名";
+                  } else if (value.length > 32 || value.length < 2) {
+                    errMsg = "法人姓名为2～32位";
                   }
                   if (errMsg) {
                     return Promise.reject(errMsg);
@@ -175,7 +177,7 @@ export default () => {
                   if (!value) {
                     errMsg = "请输入法人身份证号";
                   } else if (!isIdCard(value)) {
-                    errMsg = "请输入有效的身份证号";
+                    errMsg = "请输入正确的身份证号";
                   }
                   if (errMsg) {
                     return Promise.reject(errMsg);

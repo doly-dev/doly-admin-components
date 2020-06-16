@@ -234,7 +234,7 @@ export default () => {
                 validator: (rule, value) => {
                   let errMsg = "";
 
-                  if (value[0].length === 0 && value[1] === "") {
+                  if (value[0].length === 0 && !value[1]) {
                     errMsg = "请填写开户支行名称";
                   } else if (value[0].length === 0) {
                     errMsg = "请选择省/市";

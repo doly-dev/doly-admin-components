@@ -1,7 +1,7 @@
 /**
  * title: 结算信息
  * desc: |
- *    这里 `银行卡号` 仅校验非空，如果要在前端验证可参考《[常用银行账号位数参考](https://kf.qq.com/faq/170112ABnm6b170112FvquAn.html)》。正常情况下，需要走服务端校验。
+ *    这里 `银行卡号` 只校验8～30位数字，如果要在前端验证可参考《[常用银行账号位数参考](https://kf.qq.com/faq/170112ABnm6b170112FvquAn.html)》。正常情况下，需要走服务端校验。
  */
 import React, { useCallback } from "react";
 import { Form, Input, Button, Row, Col } from "antd";
@@ -41,6 +41,14 @@ export const enumBankCardType = [
 function removeWhiteSpace(val) {
   if (typeof val === "string") {
     return val.replace(/\s/g, "");
+  }
+  return val;
+}
+
+// 过滤输入银行卡号
+function filterInputBankCardNo(val) {
+  if (val && typeof val === "string") {
+    return val.replace(/[^\d]/g, "")
   }
   return val;
 }
@@ -175,7 +183,7 @@ export default () => {
           <Form.Item
             label="银行卡号"
             name="bankCardNo"
-            normalize={removeWhiteSpace}
+            normalize={filterInputBankCardNo}
             validateTrigger="onBlur"
             required
             rules={[
@@ -184,6 +192,8 @@ export default () => {
                   let errMsg = "";
                   if (!value) {
                     errMsg = "请输入银行卡号";
+                  }else if(value.length > 30 || value.length < 8){
+                    errMsg = "请输入正确的银行卡号"
                   }
                   if (errMsg) {
                     return Promise.reject(errMsg);

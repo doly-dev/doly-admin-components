@@ -4,6 +4,8 @@
  *    应用于`修改页面`，并且由服务端对数据进行脱敏。
  * 
  *    先将表单项和初始数据进行比较，如果不一致就进行正常的验证流程。一致就表示没有变动，直接将脱敏数据提交给服务。服务逐项验证数据含有脱敏信息就不做更新该项，否则正常验证和更新。
+ * 
+ *    **注意这里的过滤输入银行卡号方法跟上面结算信息中的不同，支持 `*` 。**
  */
 import React, { useCallback } from "react";
 import { Form, Input, Button } from "antd";
@@ -25,6 +27,29 @@ function transformToUpperCase(str) {
   return str;
 }
 
+// 过滤输入银行卡号
+function filterInputBankCardNo(val) {
+  if (val && typeof val === "string") {
+    return val.replace(/[^\d|\*]/g, "")
+  }
+  return val;
+}
+
+// 是否为银行卡号
+function isBankCardNo(val) {
+  const regNum = /^\d+$/g; // 纯数字
+
+  if (!val || typeof val !== "string") {
+    return false;
+  }
+
+  if (!regNum.test(val) || val.length > 30 || val.length < 8) {
+    return false;
+  }
+
+  return true;
+}
+
 const formItemLayout = {
   labelCol: { span: 5 },
   wrapperCol: { span: 16 }
@@ -42,6 +67,7 @@ const initialValues = {
   mobile: "130****0000",
   email: "12****@qq.com",
   idCard: "130***********2288",
+  bankCardNo: "563058********277"
 }
 
 export default () => {
@@ -106,7 +132,7 @@ export default () => {
               let errMsg = "";
               if (!value) {
                 errMsg = "请输入身份证号";
-              } else if (value === initialValues.idCard) {
+              } else if (initialValues.idCard && value === initialValues.idCard) {
                 errMsg = "";
               } else if (!isIdCard(value)) {
                 errMsg = "请输入有效的身份证号";
@@ -133,7 +159,7 @@ export default () => {
               let errMsg = "";
               if (!value) {
                 errMsg = "请输入手机号码";
-              } else if (value === initialValues.mobile) {
+              } else if (initialValues.mobile && value === initialValues.mobile) {
                 errMsg = "";
               } else if (!isMobile(value)) {
                 errMsg = "请输入正确的手机号码";
@@ -174,6 +200,33 @@ export default () => {
         ]}
       >
         <Input placeholder="请输入邮箱（选填）" allowClear autoComplete="off" />
+      </Form.Item>
+      <Form.Item
+        label="银行卡号"
+        name="bankCardNo"
+        normalize={filterInputBankCardNo}
+        validateTrigger="onBlur"
+        required
+        rules={[
+          {
+            validator(rule, value) {
+              let errMsg = "";
+              if (!value) {
+                errMsg = "请输入银行卡号";
+              } else if (initialValues.bankCardNo && value === initialValues.bankCardNo) {
+                errMsg = "";
+              } else if (!isBankCardNo(value)) {
+                errMsg = "请输入正确的银行卡号";
+              }
+              if (errMsg) {
+                return Promise.reject(errMsg);
+              }
+              return Promise.resolve();
+            }
+          }
+        ]}
+      >
+        <Input placeholder="请输入银行卡号" allowClear autoComplete="off" />
       </Form.Item>
       <Form.Item {...buttonItemLayout}>
         <Button type="primary" htmlType="submit">提交</Button>

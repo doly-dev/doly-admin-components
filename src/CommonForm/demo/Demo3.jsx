@@ -63,8 +63,6 @@ function VerificateCodeInput({
         setButtonState(COUNTDOWN_BUTTON_STATE_PROCESS);
         inputRef.current.focus();
       });
-    }).catch(() => {
-      message.error("请输入正确的手机号码");
     });
   };
 

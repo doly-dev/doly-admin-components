@@ -11,6 +11,11 @@ import Dictionary from "../../Dictionary";
 import CascaderWithInput from "../../CascaderWithInput";
 import styles from "./style.less";
 
+import {
+  normalizeNotWhiteSpace,
+  normalizeNumber
+} from "./_utils";
+
 // 下面的枚举值请在单独文件维护
 // 结算方式
 // T1-T+1 D1-D+1
@@ -36,14 +41,6 @@ export const enumBankCardType = [
     name: "对私账户"
   }
 ];
-
-// 去掉空格
-function removeWhiteSpace(val) {
-  if (typeof val === "string") {
-    return val.replace(/\s/g, "");
-  }
-  return val;
-}
 
 // 过滤输入银行卡号
 function filterInputBankCardNo(val) {
@@ -156,7 +153,7 @@ export default () => {
           <Form.Item
             label="账户名称"
             name="bankCertName"
-            normalize={removeWhiteSpace}
+            normalize={normalizeNotWhiteSpace}
             validateTrigger="onBlur"
             required
             rules={[
@@ -183,7 +180,7 @@ export default () => {
           <Form.Item
             label="银行卡号"
             name="bankCardNo"
-            normalize={filterInputBankCardNo}
+            normalize={normalizeNumber}
             validateTrigger="onBlur"
             required
             rules={[
@@ -210,7 +207,7 @@ export default () => {
           <Form.Item
             label="开户银行名称"
             name="bankName"
-            normalize={removeWhiteSpace}
+            normalize={normalizeNotWhiteSpace}
             validateTrigger="onBlur"
             required
             rules={[

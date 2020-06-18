@@ -5,50 +5,18 @@
  * 
  *    先将表单项和初始数据进行比较，如果不一致就进行正常的验证流程。一致就表示没有变动，直接将脱敏数据提交给服务。服务逐项验证数据含有脱敏信息就不做更新该项，否则正常验证和更新。
  * 
- *    **注意这里的过滤输入银行卡号方法跟上面结算信息中的不同，支持 `*` 。**
+ *    **注意这里的过滤输入方法跟上面不同，支持 `*` 。**
  */
 import React, { useCallback } from "react";
 import { Form, Input, Button } from "antd";
 import { isMobile, isEmail, isIdCard } from "util-helpers";
 
-// 去掉空格
-function removeWhiteSpace(val) {
-  if (typeof val === "string") {
-    return val.replace(/\s/g, "");
-  }
-  return val;
-}
-
-// 转为大写
-function transformToUpperCase(str) {
-  if (typeof str === "string") {
-    return str.toUpperCase();
-  }
-  return str;
-}
-
-// 过滤输入银行卡号
-function filterInputBankCardNo(val) {
-  if (val && typeof val === "string") {
-    return val.replace(/[^\d|\*]/g, "")
-  }
-  return val;
-}
-
-// 是否为银行卡号
-function isBankCardNo(val) {
-  const regNum = /^\d+$/g; // 纯数字
-
-  if (!val || typeof val !== "string") {
-    return false;
-  }
-
-  if (!regNum.test(val) || val.length > 30 || val.length < 8) {
-    return false;
-  }
-
-  return true;
-}
+import {
+  normalizeNumberAndMask,
+  normalizeIdCardAndMask,
+  normalizeNotWhiteSpace,
+  isBankCardNo
+} from "./_utils";
 
 const formItemLayout = {
   labelCol: { span: 5 },
@@ -98,7 +66,7 @@ export default () => {
       <Form.Item
         label="姓名"
         name="userName"
-        normalize={removeWhiteSpace}
+        normalize={normalizeNotWhiteSpace}
         validateTrigger="onBlur"
         required
         rules={[
@@ -123,7 +91,7 @@ export default () => {
       <Form.Item
         label="身份证号"
         name="idCard"
-        normalize={val => transformToUpperCase(removeWhiteSpace(val))}
+        normalize={normalizeIdCardAndMask}
         validateTrigger="onBlur"
         required
         rules={[
@@ -150,7 +118,7 @@ export default () => {
       <Form.Item
         label="手机号码"
         name="mobile"
-        normalize={removeWhiteSpace}
+        normalize={normalizeNumberAndMask}
         validateTrigger="onBlur"
         required
         rules={[
@@ -177,7 +145,7 @@ export default () => {
       <Form.Item
         label="邮箱"
         name="email"
-        normalize={removeWhiteSpace}
+        normalize={normalizeNotWhiteSpace}
         validateTrigger="onBlur"
         rules={[
           {
@@ -204,7 +172,7 @@ export default () => {
       <Form.Item
         label="银行卡号"
         name="bankCardNo"
-        normalize={filterInputBankCardNo}
+        normalize={normalizeNumberAndMask}
         validateTrigger="onBlur"
         required
         rules={[

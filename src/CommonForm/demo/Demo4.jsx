@@ -13,21 +13,12 @@ import lcnForm from "lcn/lcn-form";
 import CascaderWithInput from "../../CascaderWithInput";
 import styles from "./style.less";
 
-// 去掉空格
-function removeWhiteSpace(val) {
-  if (typeof val === "string") {
-    return val.replace(/\s/g, "");
-  }
-  return val;
-}
-
-// 转为大写
-function transformToUpperCase(str) {
-  if (typeof str === "string") {
-    return str.toUpperCase();
-  }
-  return str;
-}
+import {
+  normalizeIdCard,
+  normalizeNumberAndWordUpperCase,
+  normalizeNotWhiteSpace,
+  normalizeNumber
+} from "./_utils";
 
 const oneColSpan = {
   span: 24
@@ -81,7 +72,7 @@ export default () => {
           <Form.Item
             label="公司名称"
             name="companyName"
-            normalize={removeWhiteSpace}
+            normalize={ normalizeNotWhiteSpace }
             validateTrigger="onBlur"
             required
             rules={[
@@ -109,7 +100,7 @@ export default () => {
             label="营业执照号"
             name="businessRegno"
             validateTrigger="onBlur"
-            normalize={val => transformToUpperCase(removeWhiteSpace(val))}
+            normalize={normalizeNumberAndWordUpperCase}
             required
             rules={[
               {
@@ -138,7 +129,7 @@ export default () => {
           <Form.Item
             label="法人姓名"
             name="legalName"
-            normalize={removeWhiteSpace}
+            normalize={normalizeNotWhiteSpace}
             validateTrigger="onBlur"
             required
             rules={[
@@ -167,7 +158,7 @@ export default () => {
           <Form.Item
             label="法人身份证号"
             name="legalIdCard"
-            normalize={val => transformToUpperCase(removeWhiteSpace(val))}
+            normalize={normalizeIdCard}
             validateTrigger="onBlur"
             required
             rules={[
@@ -194,7 +185,7 @@ export default () => {
           <Form.Item
             label="法人手机号"
             name="legalMobile"
-            normalize={removeWhiteSpace}
+            normalize={normalizeNumber}
             validateTrigger="onBlur"
             required
             rules={[

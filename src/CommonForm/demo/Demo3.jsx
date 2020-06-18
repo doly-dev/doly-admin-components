@@ -10,6 +10,12 @@ import {
   COUNTDOWN_BUTTON_STATE_PROCESS
 } from "../../CountDownButton/types";
 
+import { 
+  normalizeNumber, 
+  checkSpecialChar, 
+  SUPPORT_SPECIAL_CHAR 
+} from "./_utils";
+
 // 接口：发送短信验证码
 function asyncSendVerificationCode() {
   return new Promise(resolve => {
@@ -91,41 +97,6 @@ function VerificateCodeInput({
   );
 }
 
-// 去掉空格
-function removeWhiteSpace(val) {
-  if (typeof val === "string") {
-    return val.replace(/\s/g, "");
-  }
-  return val;
-}
-
-// 过滤密码的数字、字母，剩余的为特殊字符
-const checkSpecialChar = (val, supportSpecialChars = "-_!@#$%^&*") => {
-  const ret = {
-    validated: true,
-    message: ""
-  }
-  // 过滤出特殊字符
-  const specialChar = val.replace(/[a-z]/gi, "").replace(/\d/g, "");
-
-  // 不存在特殊字符
-  if (specialChar.length <= 0) {
-    return ret;
-  }
-
-  // 当前特殊字符拆分数组
-  const specialCharArr = specialChar.split("");
-  specialCharArr.some(item => {
-    if (supportSpecialChars.indexOf(item) === -1) {
-      ret.validated = false;
-      ret.message = `密码的特殊符号只能为${supportSpecialChars}`;
-    }
-    return !ret.validated
-  });
-
-  return ret;
-}
-
 // 验证密码
 function verifierPassword(value, label = "密码") {
   let errMsg = "";
@@ -135,10 +106,10 @@ function verifierPassword(value, label = "密码") {
     errMsg = "密码为8～16位";
   } else {
     // 校验特殊字符
-    const validateSpecialChar = checkSpecialChar(value);
-    if (!validateSpecialChar.validated) {
-      errMsg = validateSpecialChar.message;
-    } else if (!isPassword(value, { level: 2 })) {
+    const validated = checkSpecialChar(value);
+    if (!validated) {
+      errMsg = `密码的特殊符号只能为${SUPPORT_SPECIAL_CHAR}`;
+    } else if (!isPassword(value, { level: 2, special: SUPPORT_SPECIAL_CHAR })) {
       errMsg = "密码为大小写字母、数字或符号任意两者组合";
     }
   }
@@ -202,7 +173,7 @@ export default () => {
       <Form.Item
         label="手机号码"
         name="mobile"
-        normalize={removeWhiteSpace}
+        normalize={normalizeNumber}
         validateTrigger="onBlur"
         required
         rules={[

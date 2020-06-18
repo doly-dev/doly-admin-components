@@ -10,10 +10,10 @@ import {
   COUNTDOWN_BUTTON_STATE_PROCESS
 } from "../../CountDownButton/types";
 
-import { 
-  normalizeNumber, 
-  checkSpecialChar, 
-  SUPPORT_SPECIAL_CHAR 
+import {
+  normalizeNumber,
+  checkSpecialChar,
+  SUPPORT_SPECIAL_CHAR
 } from "./_utils";
 
 // 接口：发送短信验证码
@@ -62,6 +62,8 @@ function VerificateCodeInput({
         triggerChange({ requestId: res.data.requestId });
         setButtonState(COUNTDOWN_BUTTON_STATE_PROCESS);
         inputRef.current.focus();
+      }).catch(() => {
+        setButtonState(COUNTDOWN_BUTTON_STATE_INIT);
       });
     });
   };

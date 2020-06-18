@@ -55,9 +55,9 @@ function VerificateCodeInput({
         triggerChange({ requestId: res.data.requestId });
         setButtonState(COUNTDOWN_BUTTON_STATE_PROCESS);
         inputRef.current.focus();
+      }).catch(() => {
+        setButtonState(COUNTDOWN_BUTTON_STATE_INIT);
       });
-    }).catch(() => {
-      message.error("请输入正确的手机号码");
     });
   };
 

@@ -84,6 +84,8 @@ type  | 显示方式，支持 `text` `tag` `badge` | `string` | `text` |
 
 ### Dictionary.List
 
+除了以下参数，其余和 `Dictionary` 组件一样。
+
 参数 | 说明 | 类型 | 默认值 |
 ------------- | ------------- | ------------- | ------------- |
 align  | 对齐方式 | `start | end |center | baseline` | - |
@@ -94,7 +96,7 @@ defaultValue  | 默认值，当 `value` 为非数组或长度小于0时显示 | 
 
 ### Dictionary.Select
 
-除了以下参数，其余和 [`antd Select`](https://ant.design/components/select-cn/) 组件一样。
+除了以下参数，其余和 [`antd Select`](https://ant.design/components/select-cn/) 组件一样。如需支持多选，可设置 `mode`。
 
 参数 | 说明 | 类型 | 默认值 |
 ------------- | ------------- | ------------- | ------------- |

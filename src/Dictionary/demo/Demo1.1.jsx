@@ -64,6 +64,11 @@ const enumStatus = [
 export default () => {
   return (
     <>
+      <Divider orientation="left">empty or noMatch</Divider>
+      <Dictionary data={enumStatus} value={5} />
+      <br />
+      <Dictionary data={enumStatus} value={5} defaultName="noMatch value" />
+      <br />
       <Divider orientation="left">text</Divider>
       <Dictionary data={enumStatus} value={1} />
       <br />

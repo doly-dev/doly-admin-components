@@ -43,6 +43,10 @@ npm i antd
 
 <code src="./demo/Demo1.1.jsx" />
 
+### 多个枚举
+
+<code src="./demo/Demo1.2.jsx" />
+
 ### 选择字典值
 
 <code src="./demo/Demo2.jsx" />
@@ -74,9 +78,19 @@ npm i antd
 参数 | 说明 | 类型 | 默认值 |
 ------------- | ------------- | ------------- | ------------- |
 data  | 包含 `value` `name` 的 `数据字典` | `array<object>` | `[]` |
-value  | 当前字典值 | `any` | - |
+value  | 当前字典值 | `any` | `""` |
 defaultName  | 当找不到字典值对应的名称时，显示默认名称 | `string` | `-` |
 type  | 显示方式，支持 `text` `tag` `badge` | `string` | `text` |
+
+### Dictionary.List
+
+参数 | 说明 | 类型 | 默认值 |
+------------- | ------------- | ------------- | ------------- |
+align  | 对齐方式 | `start | end |center | baseline` | - |
+direction  | 间距方向 | `vertical | horizontal` | `horizontal` |
+size  | 间距大小 | `small | middle | large | number` | `small` |
+value  | 字典值数组 | `array` | `[]` |
+defaultValue  | 默认值，当 `value` 为非数组或长度小于0时显示 | `string` | `-` |
 
 ### Dictionary.Select
 

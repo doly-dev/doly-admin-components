@@ -5,6 +5,7 @@
   "main": "lib/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "npm run dev",
     "dev": "npx dumi dev",
     "build": "npm run build:doc",
     "build:doc": "npx dumi build"

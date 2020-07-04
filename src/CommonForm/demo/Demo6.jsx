@@ -185,7 +185,7 @@ export default () => {
                   label={
                     <span>
                       IC卡小额&nbsp;
-                            <Tooltip title="IC卡小额双免优惠费率">
+                      <Tooltip title="IC卡小额双免优惠费率">
                         <InfoCircleOutlined />
                       </Tooltip>
                     </span>
@@ -197,7 +197,7 @@ export default () => {
                       validator: (rule, value) => {
                         let errMsg = "";
                         if (!value) {
-                          errMsg = "请输入IC卡小额双免优惠费率";
+                          errMsg = "";
                         } else if (value <= 0 || value >= 100) {
                           errMsg = "须大于0，小于100";
                         }
@@ -277,7 +277,7 @@ export default () => {
                   label={
                     <span>
                       银二小额&nbsp;
-                            <Tooltip title="银联二维码小额优惠费率">
+                      <Tooltip title="银联二维码小额优惠费率">
                         <InfoCircleOutlined />
                       </Tooltip>
                     </span>
@@ -289,7 +289,7 @@ export default () => {
                       validator: (rule, value) => {
                         let errMsg = "";
                         if (!value) {
-                          errMsg = "请输入银联二维码小额优惠费率";
+                          errMsg = "";
                         } else if (value <= 0 || value >= 100) {
                           errMsg = "须大于0，小于100";
                         }

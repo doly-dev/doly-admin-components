@@ -57,12 +57,15 @@ export default () => {
         <Form.Item
           label="所在地址"
           name="addressArr"
+          validateFirst
+          validateTrigger="onBlur"
+          required
           rules={[
             {
               validator: (rule, value) => {
                 let errMsg = "";
 
-                if (value[0].length === 0 && value[1] === "") {
+                if (value[0].length === 0 && !value[1]) {
                   errMsg = "请填写所在地址";
                 } else if (value[0].length === 0) {
                   errMsg = "请选择省/市/区";
@@ -74,14 +77,8 @@ export default () => {
                 }
                 return Promise.resolve();
               }
-            },
-            {
-              required: true,
-              message: "请填写所在地址"
             }
           ]}
-          validateFirst
-          validateTrigger="onBlur"
         >
           <CascaderWithInput
             options={lcnData}

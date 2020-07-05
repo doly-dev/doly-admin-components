@@ -31,7 +31,7 @@ export default () => {
       <Color.PhotoshopPicker value={colorFour} onChange={setColorFour} showText placement="topLeft" />
       <br /><br />
       <h3>SketchPicker</h3>
-      <Color.SketchPicker value={colorFive} onChange={setColorFive} showText colorMode="rgb" placement="topRight" />
+      <Color.SketchPicker value={colorFive} onChange={setColorFive} showText colorMode="rgb" placement="topLeft" />
     </>
   )
 }

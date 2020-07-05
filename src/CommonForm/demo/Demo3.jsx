@@ -204,8 +204,8 @@ export default () => {
           {
             validator(rule, value) {
               let errMsg = "";
-              if (!value || !value.requestId) {
-                errMsg = "请获取验证码并输入";
+              if (!value.requestId) {
+                errMsg = "请点击获取验证码并输入";
               } else if (!value.validateCode) {
                 errMsg = "请输入验证码";
               }

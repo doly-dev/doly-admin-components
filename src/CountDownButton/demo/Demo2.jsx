@@ -137,16 +137,22 @@ export default () => {
           name="mobile"
           validateFirst
           validateTrigger="onBlur"
+          required
           rules={[
             {
-              required: true,
-              message: "请输入手机号码"
-            },
-            {
               validator: (rule, value) => {
-                if (!isMobile(value)) {
-                  return Promise.reject("格式错误");
+                let errMsg = "";
+
+                if (!value || value.trim()) {
+                  errMsg = "请输入手机号码";
+                } else if (!isMobile(value)) {
+                  errMsg = "请输入正确的手机号码";
                 }
+
+                if (errMsg) {
+                  return Promise.reject(errMsg);
+                }
+
                 return Promise.resolve();
               }
             }
@@ -159,19 +165,18 @@ export default () => {
           label="验证码"
           validateFirst
           validateTrigger="onBlur"
+          required
           rules={[
             {
-              required: true,
-              message: "请输入验证码"
-            },
-            {
               validator(rule, value) {
+                let errMsg = "";
                 if (!value.requestId) {
-                  return Promise.reject("请获取验证码并输入");
+                  errMsg = "请点击获取验证码并输入";
+                } else if (!value.validateCode) {
+                  errMsg = "请输入验证码";
                 }
-
-                if (!value.validateCode) {
-                  return Promise.reject("请输入验证码");
+                if (errMsg) {
+                  return Promise.reject(errMsg);
                 }
 
                 return Promise.resolve();

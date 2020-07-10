@@ -103,24 +103,23 @@ export default ({ onSubmit = () => { }, name = "apply", submitOnMount = false, l
   // 初次加载提交
   useEffect(() => {
     if (defaultValues) {
-      const { applyStartTime, applyEndTime, approveStartTime, approveEndTime, ...resetDefaultValues } = defaultValues;
-      const initValues = {
-        ...initialValues,
-        ...resetDefaultValues
+      const { applyStartTime, applyEndTime, approveStartTime, approveEndTime, ...restDefaultValues } = defaultValues;
+      const retValues = {
+        ...restDefaultValues
       };
       if (applyStartTime && applyEndTime) {
-        initValues.applyTime = [
+        retValues.applyTime = [
           moment(applyStartTime),
           moment(applyEndTime)
         ];
       }
       if (applyStartTime && applyEndTime) {
-        initValues.approveTime = [
+        retValues.approveTime = [
           moment(approveStartTime),
           moment(approveEndTime)
         ];
       }
-      form.setFieldsValue(initValues);
+      form.setFieldsValue(retValues);
     }
 
     if (submitOnMount) {

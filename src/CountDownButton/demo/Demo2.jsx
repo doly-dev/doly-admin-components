@@ -143,7 +143,7 @@ export default () => {
               validator: (rule, value) => {
                 let errMsg = "";
 
-                if (!value || value.trim()) {
+                if (!value) {
                   errMsg = "请输入手机号码";
                 } else if (!isMobile(value)) {
                   errMsg = "请输入正确的手机号码";

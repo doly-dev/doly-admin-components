@@ -1,48 +1,61 @@
-import React, { useCallback, useRef, useEffect, useMemo } from "react";
+import React, { useState, useEffect, useMemo } from "react";
 import { Button } from "antd";
-import CountDown from "rc-countdown-view";
-import { 
-  COUNTDOWN_BUTTON_STATE_INIT, 
-  COUNTDOWN_BUTTON_STATE_LOADING, 
-  COUNTDOWN_BUTTON_STATE_PROCESS 
-} from "./types";
+import CountDown from "countdown-pro";
 
-// 状态文本
-const defaultStateText = {
-  [COUNTDOWN_BUTTON_STATE_INIT]: '获取验证码',
-  [COUNTDOWN_BUTTON_STATE_LOADING]: '发送中',
-  [COUNTDOWN_BUTTON_STATE_PROCESS]: '重新获取'
-};
-
-const CountDownButton = ({
-  state = COUNTDOWN_BUTTON_STATE_INIT,
-  stateText = {},
-  time = 60 * 1000,
-  onProcessEnd = () => { },
+const SendCodeButton = ({
+  // 开始倒计时
+  start = false,
+  // 初始显示文本
+  initText = "获取验证码",
+  // 倒计时显示文本，包含%s会自动替换为秒数
+  runText = "%s秒后重新获取",
+  // 结束显示文本
+  resetText = "重新获取验证码",
+  // 倒计时时长，单位秒
+  second = 60,
+  // 倒计时结束的回调方法
+  onEnd = () => { },
   ...restProps
 }) => {
-  const countdownRef = useRef(null);
-  const format = useCallback((timestamp) => timestamp / 1000, []);
-  const mapStateText = useMemo(() => ({ ...defaultStateText, stateText }), [stateText]);
+  // 0-初始化 1-运行中 2-结束
+  const [status, setStatus] = useState(() => start ? 1 : 0);
+  const [runSecond, setRunSecond] = useState(second);
+
+  const countdown = useMemo(() => {
+    return new CountDown({
+      time: second * 1000,
+      format: ms => ms / 1000,
+      onChange: setRunSecond,
+      onEnd: () => {
+        setStatus(2);
+        onEnd();
+      }
+    });
+  }, [second]);
 
   useEffect(() => {
-    if (state === COUNTDOWN_BUTTON_STATE_PROCESS) {
-      countdownRef.current.start();
-    }else{
-      countdownRef.current.reset();
+    if (start && status !== 1) {
+      countdown.reset();
+      setStatus(1);
+      countdown.start();
     }
-  }, [state]);
+
+    return countdown.pause;
+  }, [start]);
 
   return (
-    <>
-      <Button {...restProps} disabled={state === 'process'} loading={state === COUNTDOWN_BUTTON_STATE_LOADING}>
-        {mapStateText[state]}
-        <span style={state !== COUNTDOWN_BUTTON_STATE_PROCESS ? { display: 'none' } : {}}>
-          <CountDown time={time} format={format} ref={countdownRef} autoStart={false} onEnd={onProcessEnd} />s
-        </span>
-      </Button>
-    </>
+    <Button {...restProps} disabled={status === 1}>
+      {
+        status === 0 && initText
+      }
+      {
+        status === 1 && runText.replace(/%s/g, runSecond)
+      }
+      {
+        status === 2 && resetText
+      }
+    </Button>
   )
 }
 
-export default CountDownButton;
+export default SendCodeButton;

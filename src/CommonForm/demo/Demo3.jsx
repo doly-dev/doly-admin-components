@@ -4,11 +4,6 @@ import { isMobile, isPassword } from "util-helpers";
 import { useAsync } from "rc-hooks";
 
 import CountDownButton from "../../CountDownButton";
-import {
-  COUNTDOWN_BUTTON_STATE_INIT,
-  COUNTDOWN_BUTTON_STATE_LOADING,
-  COUNTDOWN_BUTTON_STATE_PROCESS
-} from "../../CountDownButton/types";
 
 import {
   normalizeNumber,
@@ -37,9 +32,9 @@ function VerificateCodeInput({
   onChange = () => { }
 }) {
   const inputRef = useRef(null);
-  const [buttonState, setButtonState] = useState(COUNTDOWN_BUTTON_STATE_INIT); // 倒计时按钮状态
+  const [start, setStart] = useState(false); // 倒计时按钮状态
 
-  const { run } = useAsync(asyncSendVerificationCode, { autoRun: false });
+  const { run, loading } = useAsync(asyncSendVerificationCode, { autoRun: false });
 
   const triggerChange = changeValue => {
     onChange({ ...value, ...changeValue });
@@ -56,20 +51,16 @@ function VerificateCodeInput({
   const onButtonClick = () => {
     // 校验手机号码
     form.validateFields([mobileField]).then((values) => {
-      setButtonState(COUNTDOWN_BUTTON_STATE_LOADING);
-
       return run({ mobile: values[mobileField] }).then(res => {
         triggerChange({ requestId: res.data.requestId });
-        setButtonState(COUNTDOWN_BUTTON_STATE_PROCESS);
+        setStart(true);
         inputRef.current.focus();
-      }).catch(() => {
-        setButtonState(COUNTDOWN_BUTTON_STATE_INIT);
       });
     });
   };
 
-  const handleProcessEnd = useCallback(() => {
-    setButtonState(COUNTDOWN_BUTTON_STATE_INIT);
+  const handleEnd = useCallback(() => {
+    setStart(false);
   }, []);
 
   return (
@@ -87,10 +78,11 @@ function VerificateCodeInput({
       </Col>
       <Col span={8}>
         <CountDownButton
-          block
-          state={buttonState}
+          start={start}
           onClick={onButtonClick}
-          onProcessEnd={handleProcessEnd}
+          onEnd={handleEnd}
+          block
+          loading={loading}
         />
       </Col>
     </Row>

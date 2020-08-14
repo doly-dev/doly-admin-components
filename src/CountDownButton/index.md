@@ -11,21 +11,16 @@ legacy: /common/count-down-button
 
 > 建议拷贝文件放在 `src/components` 目录
 
-倒计时按钮，如获取验证码。
+倒计时按钮，如获取手机号验证码、邮箱验证码等场景。
 
 **安装依赖**
 
 ```
-npm i antd rc-countdown-view
+npm i antd countdown-pro
 ```
 
 > - [`antd`](https://ant.design/components/popover-cn/)
-> - [`rc-countdown-view`](https://www.npmjs.com/package/rc-countdown-view)
-> 
-> 倒计时更多用法可参考：
-> 
-> - [`countdown`](https://caijf.github.io/countdown/) 
-> - [`rc-countdown-view`](https://caijf.github.io/rc-countdown-view/) 
+> - [`countdown-pro`](https://www.npmjs.com/package/countdown-pro)
 
 ## 代码演示
 
@@ -33,9 +28,13 @@ npm i antd rc-countdown-view
 
 <code src="./demo/Demo1.jsx" />
 
-### 获取手机验证码
+### 自定义
 
 <code src="./demo/Demo2.jsx" />
+
+### 获取手机验证码
+
+<code src="./demo/Demo3.jsx" />
 
 ## API
 
@@ -43,8 +42,9 @@ npm i antd rc-countdown-view
 
 参数 | 说明 | 类型 | 默认值 |
 ------------- | ------------- | ------------- | ------------- |
-state  | 有三种状态，分别为 `init` `loading` `process` | `string` | `init` |
-stateText  | 对应三种状态文本 | `object` | `{ init: '获取验证码', loading: '发送中', process: '重新获取' }` |
-time  | 倒计时，单位毫秒 | `number` | `60 * 1000` |
-onClick | 点击按钮回调，可用于处理请求和设置 `state` | `function` | - |
-onProcessEnd | 倒计时结束时触发，可用于重置 `state` | `function` | - |
+start  | 是否开始倒计时，当该值变动并且为 `true` 时 | `boolean` | `false` |
+second  | 倒计时时长，单位秒 | `number` | `60` |
+onEnd | 倒计时结束触发，可用于重置 `start` | `function` | - |
+initText  | 初始显示文本 | `string` | `获取验证码` |
+runText  | 倒计时显示文本，包含 `%s` 会自动替换为秒数 | `string` | `%s秒后重新获取` |
+resetText  | 结束显示文本 | `string` | `重新获取验证码` |

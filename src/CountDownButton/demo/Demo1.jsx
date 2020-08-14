@@ -1,43 +1,26 @@
 /**
  * title: 基础用法
- * desc: 根据不同周期设置 `state`
  */
 
 import React, { useCallback, useState } from "react";
 import CountDownButton from "..";
-import { 
-  COUNTDOWN_BUTTON_STATE_INIT, 
-  COUNTDOWN_BUTTON_STATE_LOADING, 
-  COUNTDOWN_BUTTON_STATE_PROCESS 
-} from "../types";
-
-// 接口请求
-function getValidateCode() {
-  return new Promise(resolve => {
-    setTimeout(() => {
-      resolve();
-    }, 1000);
-  })
-}
 
 export default () => {
-  const [state, setState] = useState(COUNTDOWN_BUTTON_STATE_INIT);
+  const [start, setStart] = useState(false);
 
   const handleClick = useCallback(() => {
-    setState(COUNTDOWN_BUTTON_STATE_LOADING);
-    getValidateCode().then(() => {
-      setState(COUNTDOWN_BUTTON_STATE_PROCESS);
-    });
+    setStart(true);
   }, []);
-  const handleTimerEnd = useCallback(() => {
-    setState(COUNTDOWN_BUTTON_STATE_INIT);
+  const handleEnd = useCallback(() => {
+    setStart(false);
   }, []);
 
   return (
     <CountDownButton
-      state={state}
+      start={start}
+      second={15}
       onClick={handleClick}
-      onProcessEnd={handleTimerEnd}
+      onEnd={handleEnd}
     />
   )
 }

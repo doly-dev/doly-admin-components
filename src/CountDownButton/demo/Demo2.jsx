@@ -21,9 +21,8 @@ export default () => {
   const handleClick = useCallback(() => {
     setLoading(true);
     getValidateCode().then(() => {
-      setStart(true);
-    }).finally(() => {
       setLoading(false);
+      setStart(true);
     });
   }, []);
   const handleEnd = useCallback(() => {

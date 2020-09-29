@@ -23,10 +23,10 @@
   "homepage": "https://github.com/doly-dev/doly-admin-components#readme",
   "dependencies": {
     "countdown-pro": "^1.0.0",
-    "rc-hooks": "^0.5.4",
+    "rc-hooks": "^0.6.6",
     "react-color": "^2.18.0",
     "react-jss": "^10.3.0",
-    "util-helpers": "^3.5.3"
+    "util-helpers": "^3.6.0"
   },
   "devDependencies": {
     "@ant-design/icons": "^4.1.0",
@@ -40,7 +40,8 @@
     "lcn": "^1.0.3",
     "mockjs": "^1.1.0",
     "react": "^16.13.1",
-    "react-dom": "^16.13.1"
+    "react-dom": "^16.13.1",
+    "typescript": "^3.5.3"
   },
   "peerDependencies": {
     "react": "^16.8.6",

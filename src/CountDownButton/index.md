@@ -26,15 +26,15 @@ npm i antd countdown-pro
 
 ### 基础用法
 
-<code src="./demo/Demo1.jsx" />
+<code src="./demo/Demo1.tsx" />
 
 ### 自定义
 
-<code src="./demo/Demo2.jsx" />
+<code src="./demo/Demo2.tsx" />
 
 ### 获取手机验证码
 
-<code src="./demo/Demo3.jsx" />
+<code src="./demo/Demo3.tsx" />
 
 ## API
 

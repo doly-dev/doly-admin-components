@@ -26,15 +26,15 @@ npm i antd react-color@2
 
 ### 显示颜色
 
-<code src="./demo/Demo1.jsx" />
+<code src="./demo/Demo1.tsx" />
 
 ### 选择颜色
 
-<code src="./demo/Demo2.jsx" />
+<code src="./demo/Demo2.tsx" />
 
 ### Form 中使用
 
-<code src="./demo/Demo3.jsx" />
+<code src="./demo/Demo3.tsx" />
 
 ## API
 

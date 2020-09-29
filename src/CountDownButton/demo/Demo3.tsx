@@ -1,5 +1,6 @@
 import React, { useCallback, useState, useRef } from "react";
-import { Form, Input, message, Row, Col, Button } from "antd";
+import { Form, Input, Row, Col, Button } from "antd";
+import { FormInstance } from "antd/es/form";
 import { isMobile } from "util-helpers";
 import { useAsync } from "rc-hooks";
 import CountDownButton from "../CountDownButton";
@@ -17,17 +18,24 @@ function asyncSendVerificationCode() {
   });
 }
 
+interface VerificateCodeInputProps {
+  mobileField?: string;
+  form?: FormInstance;
+  value?: any;
+  onChange?: (value: any) => void;
+}
+
 // 组件：验证码和获取验证码按钮
 function VerificateCodeInput({
   mobileField = "mobile",
-  form = {},
-  value = {},
+  form,
+  value,
   onChange = () => { }
-}) {
+}: VerificateCodeInputProps) {
   const inputRef = useRef(null);
   const [start, setStart] = useState(false); // 倒计时按钮状态
 
-  const { run,loading } = useAsync(asyncSendVerificationCode, { autoRun: false });
+  const { run, loading } = useAsync(asyncSendVerificationCode, { autoRun: false });
 
   const triggerChange = changeValue => {
     onChange({ ...value, ...changeValue });

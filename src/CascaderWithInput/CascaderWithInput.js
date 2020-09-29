@@ -8,7 +8,7 @@ export default ({
   options = [],
   value = [[], ""],
   onChange = () => {},
-  onBlur = null, // 表示 validateTrigger 设置为 onBlur
+  onBlur = false, // 表示 validateTrigger 设置为 onBlur
   form = null,
   cascaderProps = {},
   inputProps = {}

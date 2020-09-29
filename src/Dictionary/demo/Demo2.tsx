@@ -21,7 +21,7 @@ const enumStatus = [
 ];
 
 export default () => {
-  const [value, setValue] = useState();
+  const [value, setValue] = useState<any>();
 
   return (
     <>

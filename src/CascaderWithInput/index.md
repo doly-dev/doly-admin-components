@@ -25,11 +25,11 @@ npm i antd
 
 ### 基本用法
 
-<code src="./demo/Demo1.jsx" />
+<code src="./demo/Demo1.tsx" />
 
 ### 省/市/区+详细地址 
 
-<code src="./demo/Demo2.jsx" />
+<code src="./demo/Demo2.tsx" />
 
 
 ## API

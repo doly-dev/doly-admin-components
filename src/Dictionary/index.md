@@ -37,39 +37,39 @@ npm i antd
 
 ### 字典值
 
-<code src="./demo/Demo1.jsx" />
+<code src="./demo/Demo1.tsx" />
 
 ### 多种展示方式
 
-<code src="./demo/Demo1.1.jsx" />
+<code src="./demo/Demo1.1.tsx" />
 
 ### 多个枚举
 
-<code src="./demo/Demo1.2.jsx" />
+<code src="./demo/Demo1.2.tsx" />
 
 ### 选择字典值
 
-<code src="./demo/Demo2.jsx" />
+<code src="./demo/Demo2.tsx" />
 
 ### Form 中使用 Select
 
-<code src="./demo/Demo3.jsx" />
+<code src="./demo/Demo3.tsx" />
 
 ### 不显示全部
 
-<code src="./demo/Demo4.jsx" />
+<code src="./demo/Demo4.tsx" />
 
 ### 自定义排除项和全部
 
-<code src="./demo/Demo5.jsx" />
+<code src="./demo/Demo5.tsx" />
 
 ### 单选框
 
-<code src="./demo/Demo6.jsx" />
+<code src="./demo/Demo6.tsx" />
 
 ### Form 中使用 Radio
 
-<code src="./demo/Demo7.jsx" />
+<code src="./demo/Demo7.tsx" />
 
 ## API
 

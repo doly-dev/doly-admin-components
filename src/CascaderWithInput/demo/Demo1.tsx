@@ -8,7 +8,7 @@ import lcnData from "lcn/lcn-form";
 import CascaderWithInput from "..";
 
 export default () => {
-  const [value, setValue] = useState([[], '']);
+  const [value, setValue] = useState<[string[], string]>([[], '']);
 
   const onChange = useCallback(values => {
     setValue(values);

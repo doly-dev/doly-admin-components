@@ -1,9 +1,7 @@
 /**
- * title: 缓存查询条件
+ * title: 提交记录
  * desc: |
- *  从列表页跳转至其他，再次回到列表页，保持原先的查询条件。（仅适用于单页应用）
- * 
- *  *当前用户退出登录时，应清空该缓存 或 刷新页面。否则可能产生意外的结果。*
+ *  这里使用 `useAsync` 中的 [usePagination](https://doly-dev.github.io/rc-hooks/site/#/async/use-async?anchor=%E5%88%86%E9%A1%B5)
  */
 
 import React from "react";
@@ -12,28 +10,10 @@ import moment from "moment";
 import Mock from 'mockjs';
 
 import Demo1 from "./Demo1";
-import usePagination from "./usePagination";
+import usePagination from "./hooks/usePagination";
 import Dictionary from "../../Dictionary";
 
 import styles from './style.less';
-
-// 内存缓存
-// 如果有登录/登出，再退出登录时需要清理内存缓存
-const memoryCache = {
-  __data: {},
-  get(key) {
-    return this.__data[key];
-  },
-  set(key, value) {
-    this.__data[key] = value;
-  },
-  remote(key) {
-    delete this.__data[key];
-  },
-  clear() {
-    this.__data = {};
-  }
-}
 
 // 审核状态字典，尽量在 src/constants 中维护。
 const enumApproveResult = [
@@ -78,7 +58,7 @@ const applyList = ({ page: { pageNum, pageSize }, data = {} }) => (
   })
 );
 
-function getApplyList(params) {
+function getApplyList(params): Promise<any> {
   return new Promise(resolve => {
     setTimeout(() => {
       resolve(applyList(params));
@@ -123,41 +103,16 @@ const columns = [
   }
 ];
 
-// 缓存键值
-const cacheKey = 'search_form_values';
-
 export default () => {
-  let cacheValues = memoryCache.get(cacheKey);
-
-  const { data, run, loading, changePagination, pagination } = usePagination(getApplyList, {
-    defaultPageNum: cacheValues ? cacheValues.pages.pageNum : 1,
-    defaultPageSize: cacheValues ? cacheValues.pages.pageSize : 10,
-    defaultTotal: cacheValues ? cacheValues.pages.total : 0,
-    defaultParams: cacheValues ? cacheValues.params : {},
-    authRun: !!cacheValues,
-    onSuccess: (res, params) => {
-      // 更新缓存查询条件
-      const { pageNum, pageSize, ...restParams } = params[0];
-      cacheValues = {
-        params: restParams,
-        pages: {
-          pageNum,
-          pageSize,
-          total: res.pageInfo.total
-        }
-      }
-      memoryCache.set(cacheKey, cacheValues);
-    }
-  });
+  const { data, run, loading, changePagination, pagination } = usePagination(getApplyList, { autoRun: false });
 
   return (
     <Card className={styles.wrapper}>
       <Demo1
         onSubmit={run}
+        submitOnMount
         loading={loading}
-        submitOnMount={!cacheValues}
-        defaultValues={cacheValues ? cacheValues.params : null}
-        name="search_form_1-2"
+        name="search_form_1-1"
       />
       <Table
         dataSource={data}

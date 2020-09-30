@@ -25,28 +25,28 @@ npm i antd@4
 
 ### 创建用户
 
-<code src="./demo/Demo1.jsx" />
+<code src="./demo/Demo1.tsx" />
 
 ### 修改密码
 
-<code src="./demo/Demo2.jsx" />
+<code src="./demo/Demo2.tsx" />
 
 ### 忘记密码
 
-<code src="./demo/Demo3.jsx" />
+<code src="./demo/Demo3.tsx" />
 
 ### 企业信息
 
-<code src="./demo/Demo4.jsx" />
+<code src="./demo/Demo4.tsx" />
 
 ### 结算信息
 
-<code src="./demo/Demo5.jsx" />
+<code src="./demo/Demo5.tsx" />
 
 ### 返佣信息
 
-<code src="./demo/Demo6.jsx" />
+<code src="./demo/Demo6.tsx" />
 
 ### 脱敏校验
 
-<code src="./demo/Demo7.jsx" />
+<code src="./demo/Demo7.tsx" />

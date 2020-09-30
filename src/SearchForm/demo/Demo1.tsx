@@ -75,7 +75,15 @@ const initialValues = {
   approveTime: []
 };
 
-export default ({ onSubmit = () => { }, name = "apply", submitOnMount = false, loading = false, defaultValues = {} }) => {
+interface CompProps {
+  onSubmit?: (value: any) => void;
+  name?: string;
+  submitOnMount?: boolean;
+  loading?: boolean;
+  defaultValues?: any;
+}
+
+export default ({ onSubmit = () => { }, name = "apply", submitOnMount = false, loading = false, defaultValues = {} }: CompProps) => {
   const [form] = Form.useForm();
 
   const onFinish = useCallback(({ applyTime, approveTime, ...restValues }) => {

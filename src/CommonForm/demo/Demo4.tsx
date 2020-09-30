@@ -72,7 +72,7 @@ export default () => {
           <Form.Item
             label="公司名称"
             name="companyName"
-            normalize={ normalizeNotWhiteSpace }
+            normalize={normalizeNotWhiteSpace}
             validateTrigger="onBlur"
             required
             rules={[

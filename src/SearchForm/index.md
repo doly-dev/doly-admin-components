@@ -23,21 +23,21 @@ npm i antd@4
 
 ### 提交记录查询
 
-<code src="./demo/Demo1.jsx" />
+<code src="./demo/Demo1.tsx" />
 
 ### 审核记录查询
 
-<code src="./demo/Demo2.jsx" />
+<code src="./demo/Demo2.tsx" />
 
 ## 使用示例
 
 ### 提交记录
 
-<code src="./demo/Demo1.1.jsx" />
+<code src="./demo/Demo1.1.tsx" />
 
 ### 缓存查询条件
 
-<code src="./demo/Demo1.2.jsx" />
+<code src="./demo/Demo1.2.tsx" />
 
 ## API
 

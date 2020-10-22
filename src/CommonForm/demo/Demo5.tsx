@@ -5,7 +5,7 @@
  */
 import React, { useCallback } from "react";
 import { Form, Input, Button, Row, Col } from "antd";
-import lcnPCForm from "lcn/lcn_pc-form";
+import lcnFormPC from "lcn/lcn-form-pc";
 
 import Dictionary from "../../Dictionary";
 import CascaderWithInput from "../../CascaderWithInput";
@@ -74,7 +74,7 @@ export default () => {
 
   const onFinish = useCallback(({ branchArr, ...restValues }) => {
     const [[branchProvince, branchCity], branchName] = branchArr;
-    const values = {branchProvince, branchCity, branchName, ...restValues};
+    const values = { branchProvince, branchCity, branchName, ...restValues };
     console.log(values);
   }, []);
 
@@ -189,7 +189,7 @@ export default () => {
                   let errMsg = "";
                   if (!value) {
                     errMsg = "请输入银行卡号";
-                  }else if(value.length > 30 || value.length < 8){
+                  } else if (value.length > 30 || value.length < 8) {
                     errMsg = "请输入正确的银行卡号"
                   }
                   if (errMsg) {
@@ -258,7 +258,7 @@ export default () => {
           >
             <CascaderWithInput
               form={form}
-              options={lcnPCForm}
+              options={lcnFormPC}
               cascaderProps={{ placeholder: "请选择省/市" }}
               inputProps={{ placeholder: "请输入支行名称" }}
             />

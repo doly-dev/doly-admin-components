@@ -1,3 +1,7 @@
+# Deprecated!
+
+该仓库已停止维护，请使用 [antd-more](https://github.com/doly-dev/antd-more) 。
+
 # doly-admin-components
 
 管理平台常用业务组件库。[查看文档和示例][site]
